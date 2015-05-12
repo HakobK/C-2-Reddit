@@ -41,9 +41,9 @@ namespace RedditPhone
             MessageBox.Show(user.Created.ToString());
 
            // NavigationService.Navigate(new Uri("/UserPage.xaml?name=",UriKind.Relative));
-           
 
-           NavigationService.Navigate(new Uri("UserPage.xaml?name=" + user.FullName, UriKind.Relative));
+
+            NavigationService.Navigate(new Uri("/UserPage.xaml?key=" + user.FullName + "&comments=" + user.Comments, UriKind.Relative));
 
 
             //Subreddit s = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });

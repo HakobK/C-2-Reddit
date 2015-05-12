@@ -15,13 +15,22 @@ namespace RedditPhone
         public UserPage()
         {
             InitializeComponent();
-            string name = string.Empty;
-            if (NavigationContext.QueryString.TryGetValue("name", out name))
-            {
-                txtUserPage.Text = name;
-            }
+
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            if (NavigationContext.QueryString.ContainsKey("key"))
+            {
+                string val = NavigationContext.QueryString["key"];
+                txtUserPage.Text = "Welcome " + val;
+            }
+            if (NavigationContext.QueryString.ContainsKey("comments"))
+            {
+                string val1 = NavigationContext.QueryString["comments"];
+                txtInfo.Text = "Total comments: " + val1;
+            }
+        }
 
 
     }

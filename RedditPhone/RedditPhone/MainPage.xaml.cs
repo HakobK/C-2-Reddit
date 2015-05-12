@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace RedditPhone
 {
+
     public partial class MainPage : PhoneApplicationPage
     {
         // Constructor
@@ -21,9 +22,12 @@ namespace RedditPhone
         {
             InitializeComponent();
 
+
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
         }
+
+
 
         private async void lgnReddit_Click(object sender, RoutedEventArgs e)
         {
@@ -34,10 +38,17 @@ namespace RedditPhone
         {
             Reddit reddit = new Reddit();
             RedditUser user = await Task.Factory.StartNew(() => {return reddit.LogIn(username, password); });
-            MessageBox.Show(user.CommentKarma.ToString());
-            Subreddit s = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });
+            MessageBox.Show(user.Created.ToString());
+
+           // NavigationService.Navigate(new Uri("/UserPage.xaml?name=",UriKind.Relative));
+           
+
+           NavigationService.Navigate(new Uri("UserPage.xaml?name=" + user.FullName, UriKind.Relative));
+
+
+            //Subreddit s = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });
             //Subreddit f = await Task.Run() => reddit.GetSubreddit("windowsphone")
-            MessageBox.Show(s.Subscribers.ToString());
+            //MessageBox.Show(s.Subscribers.ToString());
         }
 
         // Sample code for building a localized ApplicationBar

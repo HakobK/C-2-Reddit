@@ -8,6 +8,9 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using RedditPhone.Resources;
+using Newtonsoft;
+using RedditSharpPCL;
+using System.Threading.Tasks;
 
 namespace RedditPhone
 {
@@ -20,6 +23,21 @@ namespace RedditPhone
 
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        private async void lgnReddit_Click(object sender, RoutedEventArgs e)
+        {
+            await login(txtUsername.Text, txtPassword.Password);
+        }
+
+        private async Task login(string username, string password)
+        {
+            Reddit reddit = new Reddit();
+            RedditUser user = await Task.Factory.StartNew(() => {return reddit.LogIn(username, password); });
+            MessageBox.Show(user.CommentKarma.ToString());
+            Subreddit s = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });
+            //Subreddit f = await Task.Run() => reddit.GetSubreddit("windowsphone")
+            MessageBox.Show(s.Subscribers.ToString());
         }
 
         // Sample code for building a localized ApplicationBar

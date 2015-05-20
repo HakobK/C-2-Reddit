@@ -38,14 +38,13 @@ namespace RedditPhone
         {
             try
             {
-                Reddit reddit = new Reddit();
+                RedditSharpPCL.Reddit reddit = new RedditSharpPCL.Reddit();
+            //    Reddit reddit = new RedditSharpPCL Reddit();
                 RedditUser user = await Task.Factory.StartNew(() => { return reddit.LogIn(username, password); });
-                MessageBox.Show(user.Created.ToString());
+                MessageBox.Show("Successful login");
 
                 // NavigationService.Navigate(new Uri("/UserPage.xaml?name=",UriKind.Relative));
-
-
-                NavigationService.Navigate(new Uri("/UserPage.xaml?key=" + user.FullName + "&comments=" + user.Posts, UriKind.Relative));
+                NavigationService.Navigate(new Uri("/UserPage.xaml?key=" + user.FullName + "&comments=" + user.Posts + "&createdat=" + user.Created.ToString() , UriKind.Relative));
             }
             catch(Exception)
             {
@@ -55,6 +54,11 @@ namespace RedditPhone
             //Subreddit s = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });
             //Subreddit f = await Task.Run() => reddit.GetSubreddit("windowsphone")
             //MessageBox.Show(s.Subscribers.ToString());
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/HomePage.xaml", UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

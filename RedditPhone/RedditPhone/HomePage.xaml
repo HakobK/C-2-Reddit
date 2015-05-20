@@ -27,7 +27,28 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
+            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            	<Run Text="HOT"/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="107,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            	<Run Text="NEW"/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            	<Run Text="SAVED"/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
+            <TextBlock HorizontalAlignment="Left" Margin="314,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+            	<Run Text="TOP"/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
+            <TextBlock x:Name="HotTxt" HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
 
         </Grid>
     </Grid>

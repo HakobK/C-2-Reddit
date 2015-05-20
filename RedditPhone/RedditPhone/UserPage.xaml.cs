@@ -35,6 +35,13 @@ namespace RedditPhone
                 }
                 txtInfo.Text = "Total comments: " + listing;
             }
+            if (NavigationContext.QueryString.ContainsKey("createdat"))
+            {
+                string val1 = NavigationContext.QueryString["createdat"];
+
+                createdat.Text = "User create date: " + val1;
+            }
+
 
             
         }

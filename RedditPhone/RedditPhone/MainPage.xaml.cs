@@ -58,7 +58,7 @@ namespace RedditPhone
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/HomePage.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/HomePage.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

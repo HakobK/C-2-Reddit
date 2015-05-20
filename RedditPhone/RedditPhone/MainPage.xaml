@@ -42,17 +42,23 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="RedditLogin" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}">
+            	<Run Text="reddit main"/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0" Background="Black">
+        <Grid x:Name="ContentPanel" Margin="12,220,12,37" Background="Black" Grid.RowSpan="2">
             <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="72" Margin="0,68,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="456"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
             <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="0,172,0,0" VerticalAlignment="Top" Width="456"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Margin="10,150,0,0"/>
             <Button x:Name="lgnReddit" Content="Login" HorizontalAlignment="Left" Margin="0,249,0,0" VerticalAlignment="Top" Click="lgnReddit_Click"/>
-            <Button Content="Go to home&#xD;&#xA;" HorizontalAlignment="Left" Margin="10,321,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+            <Button x:Name="goSubreddit" Content="Go to subreddit&#xA;" HorizontalAlignment="Left" Margin="0,425,0,0" VerticalAlignment="Top" Click="Button_Click" Height="83"/>
+            <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,353,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" Margin="18,326,0,0" TextWrapping="Wrap" Text="Subreddit:" VerticalAlignment="Top"/>
 
         </Grid>
 

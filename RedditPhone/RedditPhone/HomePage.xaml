@@ -22,7 +22,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="reddit" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="rName" Text="reddit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
@@ -50,6 +50,7 @@
             </TextBlock>
             <TextBlock x:Name="HotTxt" HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
             <Canvas HorizontalAlignment="Left" Height="100" Margin="160,196,0,0" VerticalAlignment="Top" Width="100"/>
+            <Image x:Name="headerImage" HorizontalAlignment="Left" Height="140" Margin="10,-163,0,0" VerticalAlignment="Top" Width="445"/>
 
         </Grid>
     </Grid>

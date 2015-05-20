@@ -10,17 +10,26 @@ using Microsoft.Phone.Shell;
 using RedditSharpPCL;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Collections;
+using System.Windows.Media.Imaging;
 
 namespace RedditPhone
 {
     public partial class HomePage : PhoneApplicationPage
     {
-
+        public int n = 40;
+        public int x = 25;
+        public int i = 0;
 
         public HomePage()
         {
             InitializeComponent();
             doStuff();
+            rName.FontSize = 39;
+            rName.Text = "Loading....";
+            HotTxt.Text = "Loading...";
+
+            
 
         }
 
@@ -32,35 +41,46 @@ namespace RedditPhone
 
             await Task.Factory.StartNew(() => {  reddit.LogIn("schoolc2", "school123!"); });
 
-            var phone = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });
+            var phone = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("diablo"); });
+
 
             rName.Text = phone.Title;
-            HotTxt.Text = phone.PublicDescription;
 
-            var posts = await Task.Factory.StartNew(() => { return phone.Posts.Take(5); });
-            MessageBox.Show("1");
+            var posts = await Task.Factory.StartNew(() => { return phone.Posts.Take(9); });
 
             var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
 
-            MessageBox.Show(text);
 
             string titles = "";
+            TextBlock[] Tblock = new TextBlock[x];
+
 
             await Task.Factory.StartNew(() => {
                 foreach (Post post in posts)
                 {
                     string yolo = post.Title;
-                    TextBlock block = new TextBlock();
-                    block.Text = yolo;
-                    ContentPanel.Children.Add(block);
+
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        TextBlock block= new TextBlock();
+                        var txt = new TextBlock();
+                        Tblock[i] = txt;
+                        txt.Text = yolo;
+                        txt.Margin = new Thickness(0, n, 0, 0);
+                        ContentPanel.Children.Add(txt);
+                        n = n + 40;
+
+                    });
+
+                    i++;
 
 
-                    
                 }
             });
 
-
-
+            Uri url = new Uri(phone.HeaderImage);
+            headerImage.Opacity = 0.45;
+            headerImage.Source = new BitmapImage(url);
             HotTxt.Text = titles;            
 
             //foreach(var post in posts)

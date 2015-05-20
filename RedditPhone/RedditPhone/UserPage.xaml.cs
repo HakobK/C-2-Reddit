@@ -27,9 +27,16 @@ namespace RedditPhone
             }
             if (NavigationContext.QueryString.ContainsKey("comments"))
             {
-                string val1 = NavigationContext.QueryString["comments"];
-                txtInfo.Text = "Total comments: " + val1;
+                string listing = "";
+                var val1 = NavigationContext.QueryString["comments"];
+                foreach(object s in val1)
+                {
+                    listing = listing + " " + s.ToString();
+                }
+                txtInfo.Text = "Total comments: " + listing;
             }
+
+            
         }
 
 

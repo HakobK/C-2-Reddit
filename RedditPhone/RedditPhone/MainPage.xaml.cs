@@ -36,15 +36,21 @@ namespace RedditPhone
 
         private async Task login(string username, string password)
         {
-            Reddit reddit = new Reddit();
-            RedditUser user = await Task.Factory.StartNew(() => {return reddit.LogIn(username, password); });
-            MessageBox.Show(user.Created.ToString());
+            try
+            {
+                Reddit reddit = new Reddit();
+                RedditUser user = await Task.Factory.StartNew(() => { return reddit.LogIn(username, password); });
+                MessageBox.Show(user.Created.ToString());
 
-           // NavigationService.Navigate(new Uri("/UserPage.xaml?name=",UriKind.Relative));
+                // NavigationService.Navigate(new Uri("/UserPage.xaml?name=",UriKind.Relative));
 
 
-            NavigationService.Navigate(new Uri("/UserPage.xaml?key=" + user.FullName + "&comments=" + user.Comments, UriKind.Relative));
-
+                NavigationService.Navigate(new Uri("/UserPage.xaml?key=" + user.FullName + "&comments=" + user.Posts, UriKind.Relative));
+            }
+            catch(Exception)
+            {
+                MessageBox.Show("Invalid login");
+            }
 
             //Subreddit s = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });
             //Subreddit f = await Task.Run() => reddit.GetSubreddit("windowsphone")

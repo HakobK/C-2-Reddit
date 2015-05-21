@@ -12,16 +12,22 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Windows.Media.Imaging;
+using System.Windows.Media;
+using System.Windows.Ink;
 
 namespace RedditPhone
 {
     public partial class HomePage : PhoneApplicationPage
     {
-        public int n = 40;
+        public int n = 25;
         public int m = 40;
         public int x = 25;
         public int i = 0;
         public string subredditname = "";
+        public string thumbDefault = "https://static.onthehub.com/production/attachments/9/8bd15d60-ad3d-e311-93f6-b8ca3a5db7a1/6eaf48c8-5ef4-4e81-9336-75f35f498537.jpg";
+        public string titles = "";
+        public string thumb = "";
+        public string ifNotSet = "self";
 
         public HomePage()
         {
@@ -56,33 +62,49 @@ namespace RedditPhone
 
             rName.Text = sReddit.Title;
 
-            var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(9); });
+            var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
 
             var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
 
 
-            string titles = "";
+            StackPanel[] panelCollection = new StackPanel[x];
+          
             TextBlock[] Tblock = new TextBlock[x];
-            Image Image = new Image();
+            Image[] thumbnailImage = new Image[x];
+           
+           
 
             await Task.Factory.StartNew(() => {
                 foreach (Post post in posts)
                 {
-                    string yolo = post.Title;
+                    string postTitle = post.Title;
 
 
                     Dispatcher.BeginInvoke(() =>
                     {
                        // MessageBox.Show(post.Thumbnail.ToString());
-                        //string thumb = "";
-                        //thumb = post.Thumbnail.ToString();
-                        //thumb = "https://static.onthehub.com/production/attachments/9/8bd15d60-ad3d-e311-93f6-b8ca3a5db7a1/6eaf48c8-5ef4-4e81-9336-75f35f498537.jpg";
-                        //if (thumb != "self")
-                        //{
-                        //    Uri url3 = new Uri(thumb);
-                        //    Image.Source = new BitmapImage(url3);
-                        //    Image.Margin = new Thickness(0, n, 0, 0);
-                        //}
+                        thumb = post.Thumbnail.ToString();
+                        var img = new Image();
+                        img.MaxHeight = 80;
+                        img.MaxWidth = 80;
+                        thumbnailImage[i] = img;
+                        if (thumb != ifNotSet)
+                        {
+
+                            Uri url3 = new Uri(thumb);
+                            img.Source = new BitmapImage(url3);
+                            img.HorizontalAlignment = HorizontalAlignment.Left;
+
+                            //img.Margin = new Thickness(0, 0, 0, 0);
+                        }
+
+                        else
+                        {
+                            Uri url3 = new Uri(thumbDefault);
+                            img.Source = new BitmapImage(url3);
+                            img.HorizontalAlignment = HorizontalAlignment.Left;
+                           // img.Margin = new Thickness(0, 0, 0, 0);
+                        }
                         //work in progress
                         //try{
                         //Uri url2 = new Uri(post.Thumbnail.ToString());
@@ -104,12 +126,36 @@ namespace RedditPhone
 
                         var txt = new TextBlock();
                         Tblock[i] = txt;
-                        txt.Text = yolo;
-                        txt.Margin = new Thickness(50, n, 0, 0);
-                        ContentPanel.Children.Add(txt);
-                       // ContentPanel.Children.Add(Image);
+                        txt.Text = postTitle;
+                        txt.FontSize = 14;
+                        txt.HorizontalAlignment = HorizontalAlignment.Center;
+                      //  txt.Margin = new Thickness(60,0,0,0);
+                        
 
-                        n = n + 50;
+                        var panel1 = new StackPanel();
+                        panel1.MaxHeight = 70;
+                        panel1.MaxWidth = 400;
+                        panel1.VerticalAlignment = VerticalAlignment.Top;
+                        panel1.Margin = new Thickness(0, n, 0, 0);
+                        SolidColorBrush myBrush = new SolidColorBrush(Colors.Red);
+                       // panel1.Background = myBrush;
+                        
+                        panelCollection[i] = panel1;
+                        
+                        panel1.Children.Add(txt);
+                        panel1.Children.Add(img);
+                        ContentPanel.Children.Add(panel1);
+                        //StackPanel stackpanel = new StackPanel();
+                        
+                        //stackpanel.Children.Add(txt);
+
+                        //stackpanel1.Margin = new Thickness(0, 0, 0, 0);
+
+                        //ContentPanel.Children.Add(img);
+                       //ContentPanel.Children.Add(stackpanel1);
+
+
+                        n = n + 90;
 
                     });
 

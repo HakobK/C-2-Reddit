@@ -27,32 +27,36 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0">
-            <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+        <ScrollViewer Height="631" VerticalAlignment="Top" Margin="0,129,0,0">
+            <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0" Height="1200">
+                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             	<Run Text="HOT"/>
             	<LineBreak/>
             	<Run/>
-            </TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="107,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                </TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="107,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             	<Run Text="NEW"/>
             	<LineBreak/>
             	<Run/>
-            </TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                </TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             	<Run Text="SAVED"/>
             	<LineBreak/>
             	<Run/>
-            </TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="314,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
+                </TextBlock>
+                <TextBlock HorizontalAlignment="Left" Margin="314,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
             	<Run Text="TOP"/>
             	<LineBreak/>
             	<Run/>
-            </TextBlock>
-            <TextBlock x:Name="HotTxt" HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-            <Canvas HorizontalAlignment="Left" Height="100" Margin="160,196,0,0" VerticalAlignment="Top" Width="100"/>
-            <Image x:Name="headerImage" HorizontalAlignment="Left" Height="140" Margin="10,-163,0,0" VerticalAlignment="Top" Width="445"/>
+                </TextBlock>
+                <TextBlock x:Name="HotTxt" HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+                <Canvas HorizontalAlignment="Left" Height="100" Margin="160,196,0,0" VerticalAlignment="Top" Width="100"/>
+                <Image x:Name="headerImage" HorizontalAlignment="Left" Height="140" Margin="10,-163,0,0" VerticalAlignment="Top" Width="445"/>
+                <Image x:Name="imagenew" HorizontalAlignment="Left" Height="100" Margin="24,110,0,0" VerticalAlignment="Top" Width="100"/>
+                <Image HorizontalAlignment="Left" Height="100" Margin="88,156,0,0" VerticalAlignment="Top" Width="100"/>
 
-        </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 
 </phone:PhoneApplicationPage>

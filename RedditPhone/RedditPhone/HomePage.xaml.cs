@@ -51,19 +51,19 @@ namespace RedditPhone
             await Task.Factory.StartNew(() => {  reddit.LogIn("schoolc2", "school123!"); });
 
 
-            var phone = await Task.Factory.StartNew(() => { return reddit.GetSubreddit(subR); });
+            var sReddit = await Task.Factory.StartNew(() => { return reddit.GetSubreddit(subR); });
 
 
-            rName.Text = phone.Title;
+            rName.Text = sReddit.Title;
 
-            var posts = await Task.Factory.StartNew(() => { return phone.Posts.Take(9); });
+            var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(9); });
 
             var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
 
 
             string titles = "";
             TextBlock[] Tblock = new TextBlock[x];
-            Image[] Image = new Image[x];
+            Image Image = new Image();
 
             await Task.Factory.StartNew(() => {
                 foreach (Post post in posts)
@@ -73,7 +73,16 @@ namespace RedditPhone
 
                     Dispatcher.BeginInvoke(() =>
                     {
-
+                       // MessageBox.Show(post.Thumbnail.ToString());
+                        //string thumb = "";
+                        //thumb = post.Thumbnail.ToString();
+                        //thumb = "https://static.onthehub.com/production/attachments/9/8bd15d60-ad3d-e311-93f6-b8ca3a5db7a1/6eaf48c8-5ef4-4e81-9336-75f35f498537.jpg";
+                        //if (thumb != "self")
+                        //{
+                        //    Uri url3 = new Uri(thumb);
+                        //    Image.Source = new BitmapImage(url3);
+                        //    Image.Margin = new Thickness(0, n, 0, 0);
+                        //}
                         //work in progress
                         //try{
                         //Uri url2 = new Uri(post.Thumbnail.ToString());
@@ -96,8 +105,9 @@ namespace RedditPhone
                         var txt = new TextBlock();
                         Tblock[i] = txt;
                         txt.Text = yolo;
-                        txt.Margin = new Thickness(0, n, 0, 0);
+                        txt.Margin = new Thickness(50, n, 0, 0);
                         ContentPanel.Children.Add(txt);
+                       // ContentPanel.Children.Add(Image);
 
                         n = n + 50;
 
@@ -110,7 +120,7 @@ namespace RedditPhone
             });
             try
             {
-                Uri url = new Uri(phone.HeaderImage);
+                Uri url = new Uri(sReddit.HeaderImage);
                 headerImage.Opacity = 0.45;
                 headerImage.Source = new BitmapImage(url);
             }

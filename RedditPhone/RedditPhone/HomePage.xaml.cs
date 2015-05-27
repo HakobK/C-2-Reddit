@@ -14,6 +14,7 @@ using System.Collections;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Ink;
+using System.Windows.Input;
 
 namespace RedditPhone
 {
@@ -24,10 +25,13 @@ namespace RedditPhone
         public int x = 25;
         public int i = 0;
         public string subredditname = "";
-        public string thumbDefault = "https://static.onthehub.com/production/attachments/9/8bd15d60-ad3d-e311-93f6-b8ca3a5db7a1/6eaf48c8-5ef4-4e81-9336-75f35f498537.jpg";
+        public string thumbDefault = "http://www.reddit.com/static/self_default2.png";
         public string titles = "";
         public string thumb = "";
         public string ifNotSet = "self";
+        StackPanel[] panelCollection;
+        TextBlock[] Tblock;
+        Image[] thumbnailImage;
 
         public HomePage()
         {
@@ -49,29 +53,30 @@ namespace RedditPhone
 
         }
 
+       private void StackPanel_Tap(object sender, GestureEventArgs e)
+        {
+            MessageBox.Show("lol nice");
+        }
+
+       private void print(object sender, System.Windows.Input.GestureEventArgs e)
+       {
+           MessageBox.Show("omg");
+           
+       }
+
        public async void doStuff(string subR)
         {
-           
             Reddit reddit = new Reddit();
-
             await Task.Factory.StartNew(() => {  reddit.LogIn("schoolc2", "school123!"); });
-
-
             var sReddit = await Task.Factory.StartNew(() => { return reddit.GetSubreddit(subR); });
-
-
             rName.Text = sReddit.Title;
-
             var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
-
             var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
 
-
-            StackPanel[] panelCollection = new StackPanel[x];
-          
-            TextBlock[] Tblock = new TextBlock[x];
-            Image[] thumbnailImage = new Image[x];
-           
+            panelCollection = new StackPanel[x];
+            //StackPanel[] panelCollection = new StackPanel[x];
+            Tblock = new TextBlock[x];
+            thumbnailImage = new Image[x];
            
 
             await Task.Factory.StartNew(() => {
@@ -133,12 +138,13 @@ namespace RedditPhone
                         
 
                         var panel1 = new StackPanel();
+                        panel1.Tap += new EventHandler<GestureEventArgs>(print);
                         panel1.MaxHeight = 70;
                         panel1.MaxWidth = 400;
                         panel1.VerticalAlignment = VerticalAlignment.Top;
                         panel1.Margin = new Thickness(0, n, 0, 0);
-                        SolidColorBrush myBrush = new SolidColorBrush(Colors.Red);
-                       // panel1.Background = myBrush;
+                        SolidColorBrush myBrush = new SolidColorBrush(Colors.Blue);
+                        panel1.Background = myBrush;
                         
                         panelCollection[i] = panel1;
                         

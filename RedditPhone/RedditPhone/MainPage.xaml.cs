@@ -29,7 +29,16 @@ namespace RedditPhone
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            MessageBox.Show("Invalid login");
+
+            if (NavigationContext.QueryString.ContainsKey("key"))
+            {
+                string message = NavigationContext.QueryString["key"];
+                if(message == "false")
+                {
+                    MessageBox.Show("Invalid login");
+                }
+
+            }
         }
 
 
@@ -50,10 +59,7 @@ namespace RedditPhone
                 //NavigationService.Navigate(new Uri("/SubredditContent.xaml?key=" + user.FullName + "&comments=" + user.Posts + "&createdat=" + user.Created.ToString() , UriKind.Relative));
                await Task.Factory.StartNew(() => 
                {
-
                        Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/SubredditContent.xaml?username=" + username + "&password=" + password, UriKind.Relative)));
-                   
-
                    }
                );
             

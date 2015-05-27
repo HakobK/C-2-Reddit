@@ -23,39 +23,34 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="reddit" Tap= "StackPanel_Tap" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock x:Name="rName" Text="reddit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock x:Name="rName" Text="reddit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="84"/>
+            <StackPanel Height="60" Margin="0,0,12,0">
+                <TextBlock x:Name="newTxt" TextWrapping="Wrap" Margin="0,0,378,0" Tap="newTap" Height="39">
+                	<Run Text="NEWNEWNEWN"/>
+                	<LineBreak/>
+                	<Run/>
+                </TextBlock>
+                <TextBlock x:Name="hottTxt" TextWrapping="Wrap" Height="34" Margin="0,0,360,0">
+                	<Run Text="HOT"/>
+                	<LineBreak/>
+                	<Run/>
+                </TextBlock>
+                <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
+            </StackPanel>
         </StackPanel>
 
 
 
         <!--ContentPanel - place additional content here-->
-        <ScrollViewer Height="631" VerticalAlignment="Top" Margin="0,129,0,0">
+        <ScrollViewer Height="501" VerticalAlignment="Top" Margin="0,192,0,0" HorizontalAlignment="Right" Width="480">
             <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0" Height="1200">
-                <TextBlock HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            	<Run Text="HOT"/>
-            	<LineBreak/>
-            	<Run/>
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Left" Margin="107,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            	<Run Text="NEW"/>
-            	<LineBreak/>
-            	<Run/>
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Left" Margin="202,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            	<Run Text="SAVED"/>
-            	<LineBreak/>
-            	<Run/>
-                </TextBlock>
-                <TextBlock HorizontalAlignment="Left" Margin="314,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top">
-            	<Run Text="TOP"/>
-            	<LineBreak/>
-            	<Run/>
-                </TextBlock>
+                <!--<Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="23*"/>
+                    <ColumnDefinition Width="53*"/>
+                </Grid.ColumnDefinitions>-->
                 <TextBlock x:Name="HotTxt" HorizontalAlignment="Left" Margin="10,58,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
-                <Canvas HorizontalAlignment="Left" Height="100" Margin="160,196,0,0" VerticalAlignment="Top" Width="100"/>
-                <Image x:Name="headerImage" HorizontalAlignment="Left" Height="140" Margin="10,-163,0,0" VerticalAlignment="Top" Width="445"/>
-                <Image x:Name="imagenew" HorizontalAlignment="Left" Height="100" Margin="24,110,0,0" VerticalAlignment="Top" Width="100"/>
-                <Image HorizontalAlignment="Left" Height="100" Margin="88,156,0,0" VerticalAlignment="Top" Width="100"/>
+                <Canvas HorizontalAlignment="Left" Height="100" Margin="22,196,0,0" VerticalAlignment="Top" Width="100" Grid.Column="1"/>
+                <Image x:Name="headerImage" HorizontalAlignment="Left" Height="140" Margin="10,-163,0,0" VerticalAlignment="Top" Width="445" Grid.ColumnSpan="2"/>
 
             </Grid>
         </ScrollViewer>

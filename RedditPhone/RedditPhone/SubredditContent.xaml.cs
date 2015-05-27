@@ -31,7 +31,7 @@ namespace RedditPhone
         public string titles = "";
         public string thumb = "";
         public string ifNotSet = "self";
-        public Reddit LoggedInReddit;
+        public Reddit LoggedInReddit = new Reddit();
         StackPanel[] panelCollection;
         TextBlock[] Tblock;
         Image[] thumbnailImage;
@@ -42,9 +42,10 @@ namespace RedditPhone
             rName.FontSize = 27;
             rName.Text = "Loading...";
             HotTxt.Text = "Loading...";
+            
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
 
             if (NavigationContext.QueryString.ContainsKey("subreddits"))
@@ -68,9 +69,8 @@ namespace RedditPhone
                     string usernamePass = NavigationContext.QueryString["password"];
                     password = usernamePass;
                 }
-                getContentFrontPage(username, password);
-
-               
+                await login(username, password);
+                getContentFrontPage();
 
             }
         }
@@ -155,9 +155,7 @@ namespace RedditPhone
                        panel1.Margin = new Thickness(0, n, 0, 0);
                        SolidColorBrush myBrush = new SolidColorBrush(Colors.Blue);
                        panel1.Background = myBrush;
-
                        panelCollection[i] = panel1;
-
                        panel1.Children.Add(txt);
                        panel1.Children.Add(img);
                        ContentPanel.Children.Add(panel1);
@@ -182,35 +180,147 @@ namespace RedditPhone
 
        }
 
-       public async Task<Reddit> login(string user, string pass)
+       public async Task login(string user, string pass)
        {
-           Reddit red = new Reddit();
+           
            
            await Task.Factory.StartNew(() =>
-           { 
-               try{
-               red.LogIn(user, pass);
-               }
-               catch(Exception)
-               {
+           {
+               //LoggedInReddit.LogIn(user, pass);
 
-                   Dispatcher.BeginInvoke(() => {
-                       NavigationService.Navigate(new Uri("/MainPage.xaml", UriKind.Relative));
+               try
+               {
+               
+                       LoggedInReddit.LogIn(username, password); 
+                   
+               }
+               catch (Exception e)
+               {
+                   Dispatcher.BeginInvoke(() =>
+                   {
+                       MessageBox.Show(e.ToString());
+
+                       //NavigationService.Navigate(new Uri("/MainPage.xaml?key=" + "false", UriKind.Relative));
                    });
                }
            });
-          return red;
 
        }
 
-       public async void getContentFrontPage(string user, string pass)
+       public async void getContentFrontPage()
        {
 
            Reddit reddit = new Reddit();
-           await Task.Factory.StartNew(() => { login(user, pass); }); 
+           reddit = LoggedInReddit;
+          // await Task.Factory.StartNew(() => { login(user, pass); }); 
            
            var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
            var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
+           var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
+           rName.Text = sReddit.Title;
+           
+           panelCollection = new StackPanel[x];
+           //StackPanel[] panelCollection = new StackPanel[x];
+           Tblock = new TextBlock[x];
+           thumbnailImage = new Image[x];
+
+
+           await Task.Factory.StartNew(() =>
+           {
+               foreach (Post post in posts)
+               {
+                   string postTitle = post.Title;
+                   Dispatcher.BeginInvoke(() =>
+                   {
+                       // MessageBox.Show(post.Thumbnail.ToString());
+                       thumb = post.Thumbnail.ToString();
+                       var img = new Image();
+                       img.MaxHeight = 80;
+                       img.MaxWidth = 80;
+                       thumbnailImage[i] = img;
+                       if (thumb != ifNotSet)
+                       {
+                           try
+                           {
+                               Uri url3 = new Uri(thumb);
+                               img.Source = new BitmapImage(url3);
+                               img.HorizontalAlignment = HorizontalAlignment.Left;
+                               //img.Margin = new Thickness(0, 0, 0, 0);
+                           }
+
+                           catch (Exception)
+                           {
+                               Uri url3 = new Uri(thumbDefault);
+                               img.Source = new BitmapImage(url3);
+                               img.HorizontalAlignment = HorizontalAlignment.Left;
+                               // img.Margin = new Thickness(0, 0, 0, 0);
+                           }
+                       }
+
+                       else
+                       {
+                           Uri url3 = new Uri(thumbDefault);
+                           img.Source = new BitmapImage(url3);
+                           img.HorizontalAlignment = HorizontalAlignment.Left;
+                           // img.Margin = new Thickness(0, 0, 0, 0);
+                       }
+                       var txt = new TextBlock();
+                       Tblock[i] = txt;
+                       txt.Text = postTitle;
+                       txt.FontSize = 14;
+                       txt.HorizontalAlignment = HorizontalAlignment.Center;
+                       //  txt.Margin = new Thickness(60,0,0,0);
+
+                       var panel1 = new StackPanel();
+                       panel1.Tap += new EventHandler<GestureEventArgs>(print);
+                       panel1.MaxHeight = 70;
+                       panel1.MaxWidth = 400;
+                       panel1.VerticalAlignment = VerticalAlignment.Top;
+                       panel1.Margin = new Thickness(0, n, 0, 0);
+                       SolidColorBrush myBrush = new SolidColorBrush(Colors.Blue);
+                       panel1.Background = myBrush;
+
+                       panelCollection[i] = panel1;
+
+                       panel1.Children.Add(txt);
+                       panel1.Children.Add(img);
+                       ContentPanel.Children.Add(panel1);
+
+                       n = n + 90;
+
+                   });
+                   i++;
+               }
+           });
+           try
+           {
+               Uri url = new Uri(sReddit.HeaderImage);
+               headerImage.Opacity = 0.45;
+               headerImage.Source = new BitmapImage(url);
+           }
+           catch (ArgumentNullException)
+           {
+               
+
+           }
+           HotTxt.Text = titles;
+
+       }
+
+
+
+       public async void getContentFrontPageNew()
+       {
+           MessageBox.Show("Getting new posts");
+           ContentPanel.Children.Clear();
+           panelCollection = null;
+           Tblock = null;
+           thumbnailImage = null;
+           Reddit reddit = new Reddit();
+           // await Task.Factory.StartNew(() => { login(user, pass); }); 
+           reddit = LoggedInReddit;
+           var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
+           var posts = await Task.Factory.StartNew(() => { return sReddit.New.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
 
@@ -295,10 +405,17 @@ namespace RedditPhone
            }
            catch (ArgumentNullException)
            {
-               MessageBox.Show("Error loading picture");
+
+
            }
            HotTxt.Text = titles;
 
+       }
+
+
+       private void newTap(object sender, GestureEventArgs e)
+       {
+           getContentFrontPageNew();
        }
     }
 }

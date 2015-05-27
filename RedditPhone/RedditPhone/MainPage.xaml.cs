@@ -27,6 +27,10 @@ namespace RedditPhone
             //BuildLocalizedApplicationBar();
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            MessageBox.Show("Invalid login");
+        }
 
 
         private async void lgnReddit_Click(object sender, RoutedEventArgs e)
@@ -36,20 +40,24 @@ namespace RedditPhone
 
         private async Task login(string username, string password)
         {
-            try
-            {
-                RedditSharpPCL.Reddit reddit = new RedditSharpPCL.Reddit();
+          
+           //     Reddit reddit = new Reddit();
             //    Reddit reddit = new RedditSharpPCL Reddit();
-                RedditUser user = await Task.Factory.StartNew(() => { return reddit.LogIn(username, password); });
-                MessageBox.Show("Successful login");
+             //   RedditUser user = await Task.Factory.StartNew(() => { return reddit.LogIn(username, password); });
+           //     MessageBox.Show("Successful login");
 
                 // NavigationService.Navigate(new Uri("/UserPage.xaml?name=",UriKind.Relative));
-                NavigationService.Navigate(new Uri("/UserPage.xaml?key=" + user.FullName + "&comments=" + user.Posts + "&createdat=" + user.Created.ToString() , UriKind.Relative));
-            }
-            catch(Exception)
-            {
-                MessageBox.Show("Invalid login");
-            }
+                //NavigationService.Navigate(new Uri("/SubredditContent.xaml?key=" + user.FullName + "&comments=" + user.Posts + "&createdat=" + user.Created.ToString() , UriKind.Relative));
+               await Task.Factory.StartNew(() => 
+               {
+
+                       Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/SubredditContent.xaml?username=" + username + "&password=" + password, UriKind.Relative)));
+                   
+
+                   }
+               );
+            
+     
 
             //Subreddit s = await Task.Factory.StartNew(() => { return reddit.GetSubreddit("fatpeoplehate"); });
             //Subreddit f = await Task.Run() => reddit.GetSubreddit("windowsphone")
@@ -58,7 +66,7 @@ namespace RedditPhone
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/HomePage.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/SubredditContent.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

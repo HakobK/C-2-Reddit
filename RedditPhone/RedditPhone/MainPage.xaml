@@ -42,15 +42,15 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}">
-            	<Run Text="reddit main"/>
+            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="103">
+            	<Run Text="reddit login"/>
             	<LineBreak/>
             	<Run/>
             </TextBlock>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Margin="12,220,12,37" Background="Black" Grid.RowSpan="2">
+        <Grid x:Name="ContentPanel" Margin="12,10,12,37" Background="Black" Grid.Row="1">
             <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="72" Margin="0,68,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="456"/>
             <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
             <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="0,172,0,0" VerticalAlignment="Top" Width="456"/>

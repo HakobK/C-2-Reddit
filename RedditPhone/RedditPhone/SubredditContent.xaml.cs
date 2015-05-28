@@ -323,6 +323,8 @@ namespace RedditPhone
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
            
+          
+          
            panelCollection = new StackPanel[x];
            //StackPanel[] panelCollection = new StackPanel[x];
            Tblock = new TextBlock[x];

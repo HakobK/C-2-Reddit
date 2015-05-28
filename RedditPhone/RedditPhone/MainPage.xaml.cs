@@ -11,7 +11,6 @@ using RedditPhone.Resources;
 using Newtonsoft;
 using RedditSharpPCL;
 using System.Threading.Tasks;
-using Microsoft.Advertising;
 
 namespace RedditPhone
 {
@@ -45,7 +44,6 @@ namespace RedditPhone
                 {
                     MessageBox.Show("Invalid login");
                 }
-
             }
         }
 

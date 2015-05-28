@@ -28,11 +28,7 @@ namespace RedditPhone
             //BuildLocalizedApplicationBar();
         }
 
-        void sAdControl_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
-        {
-            string error = e.Error.ToString();
-            MessageBox.Show(error);
-        }
+
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {

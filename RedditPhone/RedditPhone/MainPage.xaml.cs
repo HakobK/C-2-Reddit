@@ -38,7 +38,6 @@ namespace RedditPhone
                 {
                     MessageBox.Show("Invalid login");
                 }
-
             }
         }
 

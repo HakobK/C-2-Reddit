@@ -76,9 +76,10 @@ namespace RedditPhone
             //MessageBox.Show(s.Subscribers.ToString());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/SubredditContent.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/SideMenu.xaml?", UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

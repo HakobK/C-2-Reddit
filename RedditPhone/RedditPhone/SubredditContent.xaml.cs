@@ -21,29 +21,25 @@ namespace RedditPhone
 {
     public partial class SubredditContent : PhoneApplicationPage
     {
-        public int n = 25;
-        public int m = 40;
-        public int x = 25;
-        public int i = 0;
-        public string username = "";
-        public string password = "";
-        public string subredditname = "";
+        public int verticalMargin = 25;
+        public int objectSize = 25;
+        public int objectIndex = 0;
+        public string username;
+        public string password;
         public string thumbDefault = "http://www.reddit.com/static/self_default2.png";
-        public string titles = "";
-        public string thumb = "";
+        public string thumb;
         public string ifNotSet = "self";
         public Reddit LoggedInReddit = new Reddit();
         StackPanel[] panelCollection;
-        TextBlock[] Tblock;
-        Image[] thumbnailImage;
+        TextBlock[] tBlockCollection;
+        Image[] thumbnailCollection;
+        RedditUser test;
 
         public SubredditContent()
         {
             InitializeComponent();
             rName.FontSize = 27;
             rName.Text = "Loading...";
-            HotTxt.Text = "Loading...";
-
             
         }
 
@@ -53,8 +49,7 @@ namespace RedditPhone
             if (NavigationContext.QueryString.ContainsKey("subreddits"))
             {
                 string subR = NavigationContext.QueryString["subreddits"];
-                subredditname = subR;
-                getContentWithSubr(subredditname);
+                getContentWithSubr(subR);
 
             }
 
@@ -95,10 +90,10 @@ namespace RedditPhone
            var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
-
-           panelCollection = new StackPanel[x];
-           Tblock = new TextBlock[x];
-           thumbnailImage = new Image[x];
+           MessageBox.Show(reddit.User.Id.ToString());
+           panelCollection = new StackPanel[objectSize];
+           tBlockCollection = new TextBlock[objectSize];
+           thumbnailCollection = new Image[objectSize];
 
 
            await Task.Factory.StartNew(() =>
@@ -113,7 +108,7 @@ namespace RedditPhone
                        var img = new Image();
                        img.MaxHeight = 80;
                        img.MaxWidth = 80;
-                       thumbnailImage[i] = img;
+                       thumbnailCollection[objectIndex] = img;
                        if (thumb != ifNotSet)
                        {
                            try
@@ -141,7 +136,7 @@ namespace RedditPhone
                            // img.Margin = new Thickness(0, 0, 0, 0);
                        }
                        var txt = new TextBlock();
-                       Tblock[i] = txt;
+                       tBlockCollection[objectIndex] = txt;
                        txt.Text = postTitle;
                        txt.FontSize = 14;
                        txt.HorizontalAlignment = HorizontalAlignment.Center;
@@ -152,18 +147,18 @@ namespace RedditPhone
                        panel1.MaxHeight = 70;
                        panel1.MaxWidth = 400;
                        panel1.VerticalAlignment = VerticalAlignment.Top;
-                       panel1.Margin = new Thickness(0, n, 0, 0);
+                       panel1.Margin = new Thickness(0, verticalMargin, 0, 0);
                        SolidColorBrush myBrush = new SolidColorBrush(Colors.Blue);
                        panel1.Background = myBrush;
-                       panelCollection[i] = panel1;
+                       panelCollection[objectIndex] = panel1;
                        panel1.Children.Add(txt);
                        panel1.Children.Add(img);
                        ContentPanel.Children.Add(panel1);
 
-                       n = n + 90;
+                       verticalMargin = verticalMargin + 90;
 
                    });
-                   i++;
+                   objectIndex++;
                }
            });
            try
@@ -176,7 +171,6 @@ namespace RedditPhone
            {
                MessageBox.Show("Error loading picture");
            }
-           HotTxt.Text = titles;
 
        }
 
@@ -219,10 +213,10 @@ namespace RedditPhone
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
            
-           panelCollection = new StackPanel[x];
+           panelCollection = new StackPanel[objectSize];
            //StackPanel[] panelCollection = new StackPanel[x];
-           Tblock = new TextBlock[x];
-           thumbnailImage = new Image[x];
+           tBlockCollection = new TextBlock[objectSize];
+           thumbnailCollection = new Image[objectSize];
 
 
            await Task.Factory.StartNew(() =>
@@ -237,7 +231,7 @@ namespace RedditPhone
                        var img = new Image();
                        img.MaxHeight = 80;
                        img.MaxWidth = 80;
-                       thumbnailImage[i] = img;
+                       thumbnailCollection[objectIndex] = img;
                        if (thumb != ifNotSet)
                        {
                            try
@@ -265,7 +259,7 @@ namespace RedditPhone
                            // img.Margin = new Thickness(0, 0, 0, 0);
                        }
                        var txt = new TextBlock();
-                       Tblock[i] = txt;
+                       tBlockCollection[objectIndex] = txt;
                        txt.Text = postTitle;
                        txt.FontSize = 14;
                        txt.HorizontalAlignment = HorizontalAlignment.Center;
@@ -276,20 +270,20 @@ namespace RedditPhone
                        panel1.MaxHeight = 70;
                        panel1.MaxWidth = 400;
                        panel1.VerticalAlignment = VerticalAlignment.Top;
-                       panel1.Margin = new Thickness(0, n, 0, 0);
+                       panel1.Margin = new Thickness(0, verticalMargin, 0, 0);
                        SolidColorBrush myBrush = new SolidColorBrush(Colors.Blue);
                        panel1.Background = myBrush;
 
-                       panelCollection[i] = panel1;
+                       panelCollection[objectIndex] = panel1;
 
                        panel1.Children.Add(txt);
                        panel1.Children.Add(img);
                        ContentPanel.Children.Add(panel1);
 
-                       n = n + 90;
+                       verticalMargin = verticalMargin + 90;
 
                    });
-                   i++;
+                   objectIndex++;
                }
            });
            try
@@ -303,7 +297,6 @@ namespace RedditPhone
                
 
            }
-           HotTxt.Text = titles;
 
        }
 
@@ -314,21 +307,20 @@ namespace RedditPhone
            MessageBox.Show("Getting new posts");
            ContentPanel.Children.Clear();
            panelCollection = null;
-           Tblock = null;
-           thumbnailImage = null;
+           tBlockCollection = null;
+           thumbnailCollection = null;
            Reddit reddit = new Reddit();
            reddit = LoggedInReddit;
            var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
            var posts = await Task.Factory.StartNew(() => { return sReddit.New.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
-           
+           Post test = new Post();
           
-          
-           panelCollection = new StackPanel[x];
+           panelCollection = new StackPanel[objectSize];
            //StackPanel[] panelCollection = new StackPanel[x];
-           Tblock = new TextBlock[x];
-           thumbnailImage = new Image[x];
+           tBlockCollection = new TextBlock[objectSize];
+           thumbnailCollection = new Image[objectSize];
 
 
            await Task.Factory.StartNew(() =>
@@ -343,7 +335,7 @@ namespace RedditPhone
                        var img = new Image();
                        img.MaxHeight = 80;
                        img.MaxWidth = 80;
-                       thumbnailImage[i] = img;
+                       thumbnailCollection[objectIndex] = img;
                        if (thumb != ifNotSet)
                        {
                            try
@@ -371,7 +363,7 @@ namespace RedditPhone
                            // img.Margin = new Thickness(0, 0, 0, 0);
                        }
                        var txt = new TextBlock();
-                       Tblock[i] = txt;
+                       tBlockCollection[objectIndex] = txt;
                        txt.Text = postTitle;
                        txt.FontSize = 14;
                        txt.HorizontalAlignment = HorizontalAlignment.Center;
@@ -382,20 +374,20 @@ namespace RedditPhone
                        panel1.MaxHeight = 70;
                        panel1.MaxWidth = 400;
                        panel1.VerticalAlignment = VerticalAlignment.Top;
-                       panel1.Margin = new Thickness(0, n, 0, 0);
+                       panel1.Margin = new Thickness(0, verticalMargin, 0, 0);
                        SolidColorBrush myBrush = new SolidColorBrush(Colors.Blue);
                        panel1.Background = myBrush;
 
-                       panelCollection[i] = panel1;
+                       panelCollection[objectIndex] = panel1;
 
                        panel1.Children.Add(txt);
                        panel1.Children.Add(img);
                        ContentPanel.Children.Add(panel1);
 
-                       n = n + 90;
+                       verticalMargin = verticalMargin + 90;
 
                    });
-                   i++;
+                   objectIndex++;
                }
            });
            try
@@ -409,7 +401,6 @@ namespace RedditPhone
 
 
            }
-           HotTxt.Text = titles;
 
        }
 

@@ -68,7 +68,6 @@
             <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,353,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="456"/>
             <TextBlock HorizontalAlignment="Left" Margin="18,326,0,0" TextWrapping="Wrap" Text="Subreddit:" VerticalAlignment="Top"/>
 
-            <UI:AdControl x:Name="sAdControl" ApplicationId="test_unit" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="80" Margin="0,500,-24,0" VerticalAlignment="Top" Width="480"/>
 
         </Grid>
 

@@ -23,9 +23,16 @@ namespace RedditPhone
         {
             InitializeComponent();
 
-
+     
+            //sAdControl.ErrorOccurred += new EventHandler<Microsoft.Advertising.AdErrorEventArgs>(sAdControl_ErrorOccurred);
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+
+        void sAdControl_ErrorOccurred(object sender, Microsoft.Advertising.AdErrorEventArgs e)
+        {
+            string error = e.Error.ToString();
+            MessageBox.Show(error);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media;
 using System.Windows.Ink;
 using System.Windows.Input;
+using Microsoft.Advertising.Mobile;
+
 
 namespace RedditPhone
 {
@@ -42,6 +44,7 @@ namespace RedditPhone
             rName.FontSize = 27;
             rName.Text = "Loading...";
             HotTxt.Text = "Loading...";
+
             
         }
 
@@ -82,21 +85,19 @@ namespace RedditPhone
 
        private void print(object sender, System.Windows.Input.GestureEventArgs e)
        {
-           MessageBox.Show("omg");
-           
+           MessageBox.Show("u heeft geklikt");           
        }
 
        public async void getContentWithSubr(string subR)
        {
            Reddit reddit = new Reddit();
            await Task.Factory.StartNew(() => { reddit.LogIn("schoolc2", "school123!"); });
-           var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
+           var sReddit = await Task.Factory.StartNew(() => { return reddit.GetSubreddit(subR); });
            var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
 
            panelCollection = new StackPanel[x];
-           //StackPanel[] panelCollection = new StackPanel[x];
            Tblock = new TextBlock[x];
            thumbnailImage = new Image[x];
 
@@ -317,7 +318,6 @@ namespace RedditPhone
            Tblock = null;
            thumbnailImage = null;
            Reddit reddit = new Reddit();
-           // await Task.Factory.StartNew(() => { login(user, pass); }); 
            reddit = LoggedInReddit;
            var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
            var posts = await Task.Factory.StartNew(() => { return sReddit.New.Take(11); });

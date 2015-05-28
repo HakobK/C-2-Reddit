@@ -1,11 +1,12 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="RedditPhone.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="clr-namespace:Microsoft.Advertising.Mobile.UI;assembly=Microsoft.Advertising.Mobile.UI"
+    x:Class="RedditPhone.MainPage"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -39,29 +40,6 @@
             CurrentUICulture of the app at run time.
          -->
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="103">
-            	<Run Text="reddit login"/>
-            	<LineBreak/>
-            	<Run/>
-            </TextBlock>
-        </StackPanel>
-
-        <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Margin="12,10,12,37" Background="Black" Grid.Row="1">
-            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="72" Margin="0,68,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="456"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
-            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="0,172,0,0" VerticalAlignment="Top" Width="456"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Margin="10,150,0,0"/>
-            <Button x:Name="lgnReddit" Content="Login" HorizontalAlignment="Left" Margin="0,249,0,0" VerticalAlignment="Top" Click="lgnReddit_Click"/>
-            <Button x:Name="goSubreddit" Content="Go to subreddit&#xA;" HorizontalAlignment="Left" Margin="0,425,0,0" VerticalAlignment="Top" Click="Button_Click" Height="83"/>
-            <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,353,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="456"/>
-            <TextBlock HorizontalAlignment="Left" Margin="18,326,0,0" TextWrapping="Wrap" Text="Subreddit:" VerticalAlignment="Top"/>
-
-        </Grid>
-
         <!--Uncomment to see an alignment grid to help ensure your controls are
             aligned on common boundaries.  The image has a top margin of -32px to
             account for the System Tray. Set this to 0 (or remove the margin altogether)
@@ -69,6 +47,31 @@
 
             Before shipping remove this XAML and the image itself.-->
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="103">
+				<Run Text="reddit login"/>
+				<LineBreak/>
+				<Run/>
+            </TextBlock>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Margin="12,10" Background="Black" Grid.Row="1">
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="72" Margin="0,68,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
+            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="0,172,0,0" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Margin="10,150,0,0"/>
+            <Button x:Name="lgnReddit" Content="Login" HorizontalAlignment="Left" Margin="0,249,0,0" VerticalAlignment="Top" Click="lgnReddit_Click"/>
+            <Button x:Name="goSubreddit" Content="Go to subreddit&#xA;" HorizontalAlignment="Left" Margin="0,425,0,0" VerticalAlignment="Top" Click="Button_Click" Height="83"/>
+            <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,353,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" Margin="18,326,0,0" TextWrapping="Wrap" Text="Subreddit:" VerticalAlignment="Top"/>
+
+            <UI:AdControl x:Name="adBox" ApplicationId="ee872950-d4d8-4c28-9ad9-d888fc6a0046" AdUnitId="11485576" HorizontalAlignment="Left" Height="80" Margin="0,500,-24,0" VerticalAlignment="Top" Width="480"/>
+
+        </Grid>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

@@ -25,16 +25,16 @@
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="reddit" Tap= "StackPanel_Tap" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="rName" Text="reddit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="84"/>
-            <StackPanel Height="60" Margin="0,0,12,0">
-                <TextBlock x:Name="newTxt" TextWrapping="Wrap" Margin="0,0,378,0" Tap="newTap" Height="39">
-					<Run Text="NEWNEWNEWN"/>
-					<LineBreak/>
-					<Run/>
-                </TextBlock>
-                <TextBlock x:Name="hottTxt" TextWrapping="Wrap" Height="34" Margin="0,0,360,0">
+            <StackPanel Height="65" Margin="0,0,12,0">
+                <TextBlock x:Name="hottTxt" TextWrapping="Wrap" Height="34" Margin="0,0,386,0">
 					<Run Text="HOT"/>
 					<LineBreak/>
 					<Run/>
+                </TextBlock>
+                <TextBlock x:Name="newTxt" TextWrapping="Wrap" Margin="0,0,386,0" Tap="newTap" Height="32" RenderTransformOrigin="1.556,1.469">
+                	<Run Text="NEW"/>
+                	<LineBreak/>
+                	<Run/>
                 </TextBlock>
                 <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
             </StackPanel>

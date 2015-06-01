@@ -50,13 +50,17 @@
         <!--TitlePanel contains the name of the application and page title-->
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Margin="10" Background="Black" Grid.Row="1">
-            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="72" Margin="0,107,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="456"/>
-            <TextBlock HorizontalAlignment="Left" Margin="10,85,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
-            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="0,211,0,0" VerticalAlignment="Top" Width="456"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Margin="10,189,0,0"/>
-            <Button x:Name="lgnReddit" Content="Login" HorizontalAlignment="Left" Margin="0,288,0,0" VerticalAlignment="Top" Click="lgnReddit_Click"/>
-            <Button Content="=" HorizontalAlignment="Left" Margin="377,0,0,0" VerticalAlignment="Top" Height="75" Width="83" Click="Button_Click_1"/>
+        <Grid x:Name="ContentPanel" Margin="12,10" Background="Black" Grid.Row="1">
+            <TextBox x:Name="txtUsername" HorizontalAlignment="Left" Height="72" Margin="0,68,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" Text="Username" VerticalAlignment="Top"/>
+            <PasswordBox x:Name="txtPassword" HorizontalAlignment="Left" Margin="0,172,0,0" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Margin="10,150,0,0"/>
+            <Button x:Name="lgnReddit" Content="Login" HorizontalAlignment="Left" Margin="0,249,0,0" VerticalAlignment="Top" Click="lgnReddit_Click"/>
+            <Button x:Name="goSubreddit" Content="Go to subreddit&#xA;" HorizontalAlignment="Left" Margin="0,425,0,0" VerticalAlignment="Top" Click="Button_Click" Height="83"/>
+            <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,353,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="456"/>
+            <TextBlock HorizontalAlignment="Left" Margin="18,326,0,0" TextWrapping="Wrap" Text="Subreddit:" VerticalAlignment="Top"/>
+
+            <UI:AdControl x:Name="sAdControl" ApplicationId="test_unit" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="80" Margin="0,500,-24,0" VerticalAlignment="Top" Width="480"/>
 
         </Grid>
 

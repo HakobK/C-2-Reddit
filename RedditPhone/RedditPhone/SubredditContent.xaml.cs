@@ -309,6 +309,9 @@ namespace RedditPhone
            panelCollection = null;
            tBlockCollection = null;
            thumbnailCollection = null;
+           int verticalMargin = 25;
+           int objectSize = 25;
+           int objectIndex = 0;
            Reddit reddit = new Reddit();
            reddit = LoggedInReddit;
            var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });

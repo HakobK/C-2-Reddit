@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
+        <StackPanel Grid.Row="0" Margin="6,34,6,534" Height="200" Grid.RowSpan="2">
             <TextBlock Text="reddit" Tap= "StackPanel_Tap" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="rName" Text="reddit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="84"/>
             <StackPanel Height="65" Margin="0,0,12,0">
@@ -31,19 +31,18 @@
 					<LineBreak/>
 					<Run/>
                 </TextBlock>
-                <TextBlock x:Name="newTxt" TextWrapping="Wrap" Margin="0,0,386,0" Tap="newTap" Height="32" RenderTransformOrigin="1.556,1.469">
+                <TextBlock x:Name="newTxt" TextWrapping="Wrap" Margin="0,0,386,0" Tap="newTap" Height="32" RenderTransformOrigin="3.236,1.984">
                 	<Run Text="NEW"/>
                 	<LineBreak/>
                 	<Run/>
                 </TextBlock>
-                <TextBlock TextWrapping="Wrap" Text="TextBlock"/>
             </StackPanel>
         </StackPanel>
 
 
 
         <!--ContentPanel - place additional content here-->
-        <ScrollViewer Height="501" VerticalAlignment="Top" Margin="0,192,0,0" HorizontalAlignment="Right" Width="480">
+        <ScrollViewer Height="501" VerticalAlignment="Top" HorizontalAlignment="Right" Width="480" Grid.Row="1" Margin="0,72,0,-19">
             <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0" Height="1200">
                 <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="23*"/>
@@ -54,6 +53,7 @@
 
             </Grid>
         </ScrollViewer>
+        <Button Content="=" HorizontalAlignment="Left" Margin="395,0,0,0" VerticalAlignment="Top" Width="78" Click="Button_Click"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

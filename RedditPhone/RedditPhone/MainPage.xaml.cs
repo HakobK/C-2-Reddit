@@ -18,12 +18,13 @@ namespace RedditPhone
     public partial class MainPage : PhoneApplicationPage
     {
 
-        public Reddit authenticatedReddit { get; set;}
+        public Reddit authenticatedReddit;
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            authenticatedReddit = new Reddit();
 
      
             //sAdControl.ErrorOccurred += new EventHandler<Microsoft.Advertising.AdErrorEventArgs>(sAdControl_ErrorOccurred);
@@ -31,7 +32,10 @@ namespace RedditPhone
             //BuildLocalizedApplicationBar();
         }
 
-
+        public async Task<Reddit> tst()
+        {
+           return authenticatedReddit;
+        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -52,6 +56,13 @@ namespace RedditPhone
             await login2(txtUsername.Text, txtPassword.Password);
         }
 
+        public async void dostuff()
+        {
+            await Task.Factory.StartNew(() =>
+                {
+                    Dispatcher.BeginInvoke(()=> MessageBox.Show(authenticatedReddit.User.FullName.ToString()));
+                });
+        }
         public async Task login2(string user, string pass)
         {
 
@@ -62,8 +73,9 @@ namespace RedditPhone
 
                 try
                 {
-                    authenticatedReddit = new Reddit();
                     authenticatedReddit.LogIn(user,pass);
+                    dostuff();
+                
 
                 }
                 catch (Exception e)

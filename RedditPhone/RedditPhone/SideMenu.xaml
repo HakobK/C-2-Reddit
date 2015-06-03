@@ -10,9 +10,9 @@
     d:DesignHeight="480" d:DesignWidth="480">
 
     <Grid x:Name="LayoutRoot" Background="Black" Grid.Row="1">
-        <Button x:Name="goSubreddit" Content="Go&#xA;" HorizontalAlignment="Left" Margin="10,116,0,0" Click="Button_Click" Height="71" VerticalAlignment="Top"/>
-        <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="10,44,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="456"/>
-        <TextBlock HorizontalAlignment="Left" Margin="18,12,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White">
+        <Button x:Name="goSubreddit" Content="Go&#xA;" HorizontalAlignment="Left" Margin="0,169,0,0" Click="Button_Click" Height="71" VerticalAlignment="Top"/>
+        <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,110,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="470"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,83,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White">
         	<Run Text="Go to "/>
         	<Run Text="Subreddit"/>
         	<Run Text=":"/>

@@ -57,7 +57,7 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Password" VerticalAlignment="Top" Margin="10,150,0,0"/>
             <Button x:Name="lgnReddit" Content="Login" HorizontalAlignment="Left" Margin="0,249,0,0" VerticalAlignment="Top" Click="lgnReddit_Click"/>
 
-            <UI:AdControl x:Name="sAdControl" ApplicationId="test_unit" AdUnitId="Image480_80" HorizontalAlignment="Left" Height="80" Margin="0,500,-24,0" VerticalAlignment="Top" Width="480"/>
+         
             <Button Content="=" HorizontalAlignment="Left" Margin="379,0,0,0" VerticalAlignment="Top" Width="77" Click="Button_Click"/>
 
         </Grid>

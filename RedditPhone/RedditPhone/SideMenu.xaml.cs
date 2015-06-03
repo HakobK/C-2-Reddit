@@ -19,12 +19,15 @@ namespace RedditPhone
         public SideMenu()
         {
             InitializeComponent();
+            Reddit rdt = new Reddit();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/SubredditContent.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
         }
+
+
 
     }
 }

@@ -8,40 +8,45 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using RedditPhone.Resources;
+using System.Threading.Tasks;
+
 namespace RedditPhone
 {
     public partial class UserPage : PhoneApplicationPage
     {
+        MainPage authentication = new MainPage();
         public UserPage()
         {
             InitializeComponent();
-            MessageBox.Show(MainPage.)
 
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (NavigationContext.QueryString.ContainsKey("key"))
-            {
-                string val = NavigationContext.QueryString["key"];
-                txtUserPage.Text = "Welcome " + val;
-            }
-            if (NavigationContext.QueryString.ContainsKey("comments"))
-            {
-                string listing = "";
-                var val1 = NavigationContext.QueryString["comments"];
-                foreach(object s in val1)
-                {
-                    listing = listing + " " + s.ToString();
-                }
-                txtInfo.Text = "Total comments: " + listing;
-            }
-            if (NavigationContext.QueryString.ContainsKey("createdat"))
-            {
-                string val1 = NavigationContext.QueryString["createdat"];
+            var sReddit = await Task.Factory.StartNew(() => { return authentication.authenticatedReddit.User.FullName; });
+            txtUserPage.Text = sReddit;
 
-                createdat.Text = "User create date: " + val1;
-            }
+            //if (NavigationContext.QueryString.ContainsKey("key"))
+            //{
+            //    string val = NavigationContext.QueryString["key"];
+            //    txtUserPage.Text = "Welcome " + val;
+            //}
+            //if (NavigationContext.QueryString.ContainsKey("comments"))
+            //{
+            //    string listing = "";
+            //    var val1 = NavigationContext.QueryString["comments"];
+            //    foreach(object s in val1)
+            //    {
+            //        listing = listing + " " + s.ToString();
+            //    }
+            //    txtInfo.Text = "Total comments: " + listing;
+            //}
+            //if (NavigationContext.QueryString.ContainsKey("createdat"))
+            //{
+            //    string val1 = NavigationContext.QueryString["createdat"];
+
+            //    createdat.Text = "User create date: " + val1;
+            //}
 
 
             

@@ -79,7 +79,9 @@ namespace RedditPhone
 
        private void print(object sender, System.Windows.Input.GestureEventArgs e)
        {
-           MessageBox.Show("u heeft geklikt");           
+           MessageBox.Show("u heeft geklikt");
+           Post test22 = new Post();
+           
        }
 
        public async void getContentWithSubr(string subR)

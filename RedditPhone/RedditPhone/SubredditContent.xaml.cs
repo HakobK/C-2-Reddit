@@ -77,10 +77,17 @@ namespace RedditPhone
             MessageBox.Show("lol nice");
         }
 
-       private void print(object sender, System.Windows.Input.GestureEventArgs e)
+       private async void print(object sender, System.Windows.Input.GestureEventArgs e)
        {
            MessageBox.Show("u heeft geklikt");
            Post test22 = new Post();
+           test22.Id = "222";
+
+           await Task.Factory.StartNew(() =>
+           {
+               Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/PostContent.xaml?postID=" + test22.Id, UriKind.Relative)));
+           }
+               );
            
        }
 

@@ -19,20 +19,41 @@ namespace RedditPhone
         public SideMenu()
         {
             InitializeComponent();
-            Reddit rdt = new Reddit();
+            //UserProfile.IsEnabled = false;
+            //UserProfile.Opacity = 0;
         }
 
+        /// <summary>
+        /// Button links to SubredditContent class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/SubredditContent.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
         }
 
+        /// <summary>
+        /// Button links to UserPage class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/UserPage.xaml?", UriKind.Relative));
+            
+
         }
 
-
+        /// <summary>
+        /// Button links to Authentication to login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/MainPage.xaml?", UriKind.Relative));
+        }
 
     }
 }

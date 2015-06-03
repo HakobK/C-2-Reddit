@@ -33,7 +33,7 @@ namespace RedditPhone
         StackPanel[] panelCollection;
         TextBlock[] tBlockCollection;
         Image[] thumbnailCollection;
-        RedditUser test;
+        public Comment[] postListComments;
 
         public SubredditContent()
         {
@@ -50,6 +50,7 @@ namespace RedditPhone
             {
                 string subR = NavigationContext.QueryString["subreddits"];
                 getContentWithSubr(subR);
+                
 
             }
 
@@ -81,14 +82,13 @@ namespace RedditPhone
        {
            MessageBox.Show("u heeft geklikt");
            Post test22 = new Post();
-           test22.Id = "222";
 
            await Task.Factory.StartNew(() =>
            {
-               Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/PostContent.xaml?postID=" + test22.Id, UriKind.Relative)));
+               Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/PostContent.xaml?postID=" + test22.Url, UriKind.Relative)));
+
            }
                );
-           
        }
 
        public async void getContentWithSubr(string subR)
@@ -96,7 +96,7 @@ namespace RedditPhone
            Reddit reddit = new Reddit();
            await Task.Factory.StartNew(() => { reddit.LogIn("schoolc2", "school123!"); });
            var sReddit = await Task.Factory.StartNew(() => { return reddit.GetSubreddit(subR); });
-           var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
+           var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(1); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
            MessageBox.Show(reddit.User.Id.ToString());
@@ -109,6 +109,7 @@ namespace RedditPhone
            {
                foreach (Post post in posts)
                {
+                   
                    string postTitle = post.Title;
                    Dispatcher.BeginInvoke(() =>
                    {
@@ -118,6 +119,7 @@ namespace RedditPhone
                        img.MaxHeight = 80;
                        img.MaxWidth = 80;
                        thumbnailCollection[objectIndex] = img;
+                       
                        if (thumb != ifNotSet)
                        {
                            try
@@ -152,6 +154,7 @@ namespace RedditPhone
                        //  txt.Margin = new Thickness(60,0,0,0);
 
                        var panel1 = new StackPanel();
+                       //Dispatcher.BeginInvoke(() => { postListComments = post.Comments; });
                        panel1.Tap += new EventHandler<GestureEventArgs>(print);
                        panel1.MaxHeight = 70;
                        panel1.MaxWidth = 400;
@@ -167,7 +170,9 @@ namespace RedditPhone
                        verticalMargin = verticalMargin + 90;
 
                    });
+
                    objectIndex++;
+                   
                }
            });
            try

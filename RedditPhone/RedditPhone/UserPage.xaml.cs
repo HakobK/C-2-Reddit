@@ -23,8 +23,22 @@ namespace RedditPhone
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var sReddit = await Task.Factory.StartNew(() => { return authentication.authenticatedReddit.User.FullName; });
-            txtUserPage.Text = sReddit;
+            
+            var fullname = await Task.Factory.StartNew(() => { return authentication.authenticatedReddit.User.FullName; });
+            txtUserPage.Text = fullname;
+
+            var karma = await Task.Factory.StartNew(() => { return authentication.authenticatedReddit.User.CommentKarma; });
+            amountKarma.Text = karma.ToString();
+
+            var created = await Task.Factory.StartNew(() => { return authentication.authenticatedReddit.User.Created; });
+            created1.Text = created.ToString();
+
+            var posts = await Task.Factory.StartNew(() => { return authentication.authenticatedReddit.User.Posts; });
+      
+            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
+            Posts.Text = text.ToString();
+          
+          
 
             //if (NavigationContext.QueryString.ContainsKey("key"))
             //{
@@ -52,6 +66,9 @@ namespace RedditPhone
             
         }
 
+
+       
+        
 
     }
 }

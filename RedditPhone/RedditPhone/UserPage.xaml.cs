@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-
+using RedditPhone.Resources;
 namespace RedditPhone
 {
     public partial class UserPage : PhoneApplicationPage
@@ -15,6 +15,7 @@ namespace RedditPhone
         public UserPage()
         {
             InitializeComponent();
+            MessageBox.Show(MainPage.)
 
         }
 

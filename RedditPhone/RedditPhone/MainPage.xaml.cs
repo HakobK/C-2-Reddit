@@ -17,6 +17,9 @@ namespace RedditPhone
 
     public partial class MainPage : PhoneApplicationPage
     {
+
+        public Reddit authenticatedReddit { get; set;}
+
         // Constructor
         public MainPage()
         {
@@ -46,12 +49,40 @@ namespace RedditPhone
 
         private async void lgnReddit_Click(object sender, RoutedEventArgs e)
         {
-            await login(txtUsername.Text, txtPassword.Password);
+            await login2(txtUsername.Text, txtPassword.Password);
         }
+
+        public async Task login2(string user, string pass)
+        {
+
+
+            await Task.Factory.StartNew(() =>
+            {
+                //LoggedInReddit.LogIn(user, pass);
+
+                try
+                {
+                    authenticatedReddit = new Reddit();
+                    authenticatedReddit.LogIn(user,pass);
+
+                }
+                catch (Exception e)
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        MessageBox.Show(e.ToString());
+
+                        //NavigationService.Navigate(new Uri("/MainPage.xaml?key=" + "false", UriKind.Relative));
+                    });
+                }
+            });
+
+        }
+
 
         private async Task login(string username, string password)
         {
-          
+                
            //     Reddit reddit = new Reddit();
             //    Reddit reddit = new RedditSharpPCL Reddit();
              //   RedditUser user = await Task.Factory.StartNew(() => { return reddit.LogIn(username, password); });
@@ -59,10 +90,13 @@ namespace RedditPhone
 
                 // NavigationService.Navigate(new Uri("/UserPage.xaml?name=",UriKind.Relative));
                 //NavigationService.Navigate(new Uri("/SubredditContent.xaml?key=" + user.FullName + "&comments=" + user.Posts + "&createdat=" + user.Created.ToString() , UriKind.Relative));
-               await Task.Factory.StartNew(() => 
+
+
+
+            await Task.Factory.StartNew(() =>
                {
-                       Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/SubredditContent.xaml?username=" + username + "&password=" + password, UriKind.Relative)));
-                   }
+                   Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/SubredditContent.xaml?username=" + username + "&password=" + password, UriKind.Relative)));
+               }
                );
             
      

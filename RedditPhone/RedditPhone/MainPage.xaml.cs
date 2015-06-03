@@ -19,13 +19,14 @@ namespace RedditPhone
     {
 
         public Reddit authenticatedReddit;
+        public bool loggedIn;
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             authenticatedReddit = new Reddit();
-
+            loggedIn = false;
      
             //sAdControl.ErrorOccurred += new EventHandler<Microsoft.Advertising.AdErrorEventArgs>(sAdControl_ErrorOccurred);
             // Sample code to localize the ApplicationBar
@@ -75,7 +76,7 @@ namespace RedditPhone
                 {
                     authenticatedReddit.LogIn(user,pass);
                     dostuff();
-                
+                    loggedIn = true;
 
                 }
                 catch (Exception e)

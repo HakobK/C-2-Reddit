@@ -16,11 +16,16 @@ namespace RedditPhone
 {
     public partial class SideMenu : UserControl
     {
+        MainPage authentication = new MainPage();
+
         public SideMenu()
         {
             InitializeComponent();
-            //UserProfile.IsEnabled = false;
-            //UserProfile.Opacity = 0;
+        }
+
+        protected async void OnNavigatedTo(NavigationEventArgs e)
+        {
+            await disableButtons();
         }
 
         /// <summary>
@@ -50,10 +55,43 @@ namespace RedditPhone
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/MainPage.xaml?", UriKind.Relative));
         }
 
+        private async Task disableButtons()
+        {
+
+               await Task.Factory.StartNew(() =>
+            {
+                //LoggedInReddit.LogIn(user, pass);
+                if (authentication.loggedIn != false)
+                {
+                    Dispatcher.BeginInvoke(() =>
+                        {
+                            LogIn.Opacity = 0;
+                            LogIn.IsEnabled = false;
+                        }
+                    );
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke(() => 
+                        {
+                            UserProfile.Opacity = 0;
+                            UserProfile.IsEnabled = false;
+                        }
+                    );
+
+                }
+
+            });
+
+      
+                        
+           
+        }
     }
 }

@@ -414,5 +414,10 @@ namespace RedditPhone
        {
            getContentFrontPageNew();
        }
+
+       private void Button_Click(object sender, RoutedEventArgs e)
+       {
+           NavigationService.Navigate(new Uri("/SideMenu.xaml?", UriKind.Relative));
+       }
     }
 }

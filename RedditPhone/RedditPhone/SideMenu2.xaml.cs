@@ -85,8 +85,11 @@ namespace RedditPhone
                             //LogIn.Content = "Log Out";
                             LogIn.Opacity = 0;
                             LogIn.IsEnabled = false;
+                            LogIn.Visibility = Visibility.Collapsed;
                             UserProfile.Opacity = 100;
                             UserProfile.IsEnabled = true;
+                            UserProfile.Visibility = Visibility.Visible;
+
                         }
                         );
                     }
@@ -96,8 +99,11 @@ namespace RedditPhone
                         {
                             LogIn.Opacity = 100;
                             LogIn.IsEnabled = true;
+                            LogIn.Visibility = Visibility.Visible;
                             UserProfile.Opacity = 0;
                             UserProfile.IsEnabled = false;
+                            UserProfile.Visibility = Visibility.Collapsed;
+
                         }
                         );
 

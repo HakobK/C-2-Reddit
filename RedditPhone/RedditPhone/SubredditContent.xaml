@@ -22,27 +22,15 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="6,34,6,534" Height="200" Grid.RowSpan="2">
-            <TextBlock Text="reddit" Tap= "StackPanel_Tap" Style="{StaticResource PhoneTextNormalStyle}"/>
+        <StackPanel Grid.Row="0" Margin="6,34,6,625" Grid.RowSpan="2">
+            <TextBlock Text="LeReddit" Tap= "StackPanel_Tap" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="rName" Text="reddit" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Height="84"/>
-            <StackPanel Height="65" Margin="0,0,12,0">
-                <TextBlock x:Name="hottTxt" TextWrapping="Wrap" Height="34" Margin="0,0,386,0">
-					<Run Text="HOT"/>
-					<LineBreak/>
-					<Run/>
-                </TextBlock>
-                <TextBlock x:Name="newTxt" TextWrapping="Wrap" Margin="0,0,386,0" Tap="newTap" Height="32" RenderTransformOrigin="3.236,1.984">
-                	<Run Text="NEW"/>
-                	<LineBreak/>
-                	<Run/>
-                </TextBlock>
-            </StackPanel>
+
         </StackPanel>
 
 
-
         <!--ContentPanel - place additional content here-->
-        <ScrollViewer Height="501" VerticalAlignment="Top" HorizontalAlignment="Right" Width="480" Grid.Row="1" Margin="0,72,0,-19">
+        <ScrollViewer Height="534" VerticalAlignment="Top" HorizontalAlignment="Right" Width="480" Grid.Row="1" Margin="0,152,0,0">
             <Grid x:Name="ContentPanel" Grid.Row="1" Margin="10,0,14,0" Height="1200">
                 <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="23*"/>
@@ -54,6 +42,22 @@
             </Grid>
         </ScrollViewer>
         <Button Content="=" HorizontalAlignment="Left" Margin="395,0,0,0" VerticalAlignment="Top" Width="78" Click="Button_Click"/>
+
+        <Grid HorizontalAlignment="Left" Height="45" Margin="6,71,0,0" Grid.Row="1" VerticalAlignment="Top" Width="466">
+            <TextBlock x:Name="newTxt1" TextWrapping="Wrap" Margin="149,122,237,10" Tap="newTap" Height="32" RenderTransformOrigin="3.276,1.271">
+        		<Run Text="NEW"/>
+        		<Run/>
+            </TextBlock>
+            <TextBlock x:Name="hottTxt" HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="HOT" VerticalAlignment="Top"/>
+            <TextBlock x:Name="newTxt" HorizontalAlignment="Left" Margin="70,10,0,0" TextWrapping="Wrap" Text="NEW" VerticalAlignment="Top" Tap="newTxt_Tap"/>
+            <TextBlock HorizontalAlignment="Left" Margin="130,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="61">
+            	<Run Text="SAVE"/>
+            	<Run Text="D"/>
+            	<LineBreak/>
+            	<Run/>
+            </TextBlock>
+        </Grid>
+
     </Grid>
 
 </phone:PhoneApplicationPage>

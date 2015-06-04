@@ -80,8 +80,7 @@ namespace RedditPhone
                 {
                     Dispatcher.BeginInvoke(() => 
                         {
-                            UserProfile.Opacity = 0;
-                            UserProfile.IsEnabled = false;
+                            LogIn.Content = "Log out";
                         }
                     );
 

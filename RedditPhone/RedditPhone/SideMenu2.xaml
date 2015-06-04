@@ -22,15 +22,20 @@
         	<Run Text="Subreddit"/>
         	<Run Text=":"/>
         </TextBlock>
-        <Button x:Name="UserProfile"  Content="User Profile" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" Margin="0,73,0,0"/>
-        <Button x:Name="LogIn" Content="Log In" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_2" Margin="0,73,0,0"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="308" FontSize="40" Margin="0,10,0,0">
+        <Button x:Name="UserProfile"  Content="User Profile" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" Margin="0,73,0,0" Visibility="Collapsed"/>
+        <Button x:Name="LogIn" Content="Log In" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_2" Margin="0,73,0,0" Visibility="Collapsed"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="308" FontSize="40" Margin="10,16,0,0">
         	<Run Text="le"/>
         	<Run Text=" "/>
         	<Run Text="User Control"/>
         	<LineBreak/>
         	<Run/>
         </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="18,324,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <TextBlock x:Name="namding" HorizontalAlignment="Left" Margin="15,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold">
+        	<Run Text="Subscribed Subreddits:"/>
+        	<LineBreak/>
+        	<Run/>
+        </TextBlock>
+        <Grid x:Name="loggedSubSub" HorizontalAlignment="Left" Height="410" Margin="15,348,0,0" VerticalAlignment="Top" Width="435"/>
     </Grid>
 </phone:PhoneApplicationPage>

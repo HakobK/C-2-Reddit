@@ -69,7 +69,7 @@ namespace RedditPhone
                 {
                     subredditStatus = "frontpageloggedin";
                     isLoggedIn = 1;
-                    getContentFrontPage();
+                    await getContentFrontPage();
                 }
             }
         }
@@ -129,7 +129,7 @@ namespace RedditPhone
 
        }
 
-       public async void getContentFrontPage()
+       public async Task getContentFrontPage()
        {
 
            Reddit reddit = new Reddit();

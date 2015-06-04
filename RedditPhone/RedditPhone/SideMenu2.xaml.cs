@@ -18,10 +18,14 @@ namespace RedditPhone
     {
         MainPage authentication = new MainPage();
         public int logCheck;
-
+        public TextBlock[] SubscribedSubreddits;
+        public int SubSubSize = 25;
+        public int SubSubIndex = 1;
+        public int yMargin = 0;
         public SideMenu2()
         {
             InitializeComponent();
+            SubscribedSubreddits = new TextBlock[SubSubSize];
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -32,6 +36,7 @@ namespace RedditPhone
             {
                 string key = NavigationContext.QueryString["isloggedin"];
                 logCheck = Convert.ToInt32(key);
+                await filloutthings();
             }
 
             await disableButtons();
@@ -56,8 +61,29 @@ namespace RedditPhone
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/UserPage.xaml?", UriKind.Relative));
+        }
 
+        public async Task filloutthings()
+        {
+            await Task.Factory.StartNew(() =>
+            {
+            IEnumerable<Subreddit> sub = authentication.authenticatedReddit.User.SubscribedSubreddits;
+            foreach(Subreddit s in sub)
+            {
+                Dispatcher.BeginInvoke(() => { TextBlock txt = new TextBlock(); txt.Text = s.DisplayName; 
 
+                SubscribedSubreddits[SubSubIndex] = txt;
+                SubscribedSubreddits[SubSubIndex].Margin = new Thickness(0, yMargin, 0, 0);
+                loggedSubSub.Children.Add(SubscribedSubreddits[SubSubIndex]);
+                SubSubIndex++;
+                yMargin = yMargin + 20;
+                });
+            }
+            Dispatcher.BeginInvoke(() =>
+            {
+            });
+
+            });
         }
 
         /// <summary>

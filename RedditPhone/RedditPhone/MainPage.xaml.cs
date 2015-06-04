@@ -54,7 +54,7 @@ namespace RedditPhone
         {
             await Task.Factory.StartNew(() =>
                 {
-                    Dispatcher.BeginInvoke(()=> MessageBox.Show(loggedIn.ToString() + " en  " + authenticatedReddit.User.FullName.ToString()));
+                    Dispatcher.BeginInvoke(()=> MessageBox.Show("Logged in Succesfully!"));
                 });
         }
         public async Task login2(string user, string pass)

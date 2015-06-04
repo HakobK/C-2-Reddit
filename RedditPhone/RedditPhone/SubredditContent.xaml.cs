@@ -293,7 +293,7 @@ namespace RedditPhone
 
        private void Button_Click(object sender, RoutedEventArgs e)
        {
-           NavigationService.Navigate(new Uri("/SideMenu.xaml?", UriKind.Relative));
+           NavigationService.Navigate(new Uri("/SideMenu2.xaml?", UriKind.Relative));
        }
 
        private void newTxt_Tap(object sender, GestureEventArgs e)

@@ -99,6 +99,9 @@
     <Compile Include="SideMenu.xaml.cs">
       <DependentUpon>SideMenu.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SideMenu2.xaml.cs">
+      <DependentUpon>SideMenu2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SubredditContent.xaml.cs">
       <DependentUpon>SubredditContent.xaml</DependentUpon>
     </Compile>
@@ -126,6 +129,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SideMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SideMenu2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

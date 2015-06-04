@@ -14,17 +14,16 @@ using System.Threading.Tasks;
 
 namespace RedditPhone
 {
-    public partial class SideMenu : UserControl
+    public partial class SideMenu2 : PhoneApplicationPage
     {
         MainPage authentication = new MainPage();
 
-        public SideMenu()
+        public SideMenu2()
         {
             InitializeComponent();
-            
         }
 
-        protected async void OnNavigatedTo(NavigationEventArgs e)
+        protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
             await disableButtons();
         }
@@ -36,7 +35,7 @@ namespace RedditPhone
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/SubredditContent.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
+            NavigationService.Navigate(new Uri("/SubredditContent.xaml?subreddits=" + subredditTxt.Text, UriKind.Relative));
         }
 
         /// <summary>
@@ -47,7 +46,7 @@ namespace RedditPhone
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/UserPage.xaml?", UriKind.Relative));
-            
+
 
         }
 
@@ -56,7 +55,7 @@ namespace RedditPhone
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        
+
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             (Application.Current.RootVisual as PhoneApplicationFrame).Navigate(new Uri("/MainPage.xaml?", UriKind.Relative));
@@ -64,27 +63,35 @@ namespace RedditPhone
 
         private async Task disableButtons()
         {
-
-               await Task.Factory.StartNew(() =>
+            await Task.Factory.StartNew(() =>
             {
-                //LoggedInReddit.LogIn(user, pass);
-                if (authentication.loggedIn != false)
+                try
                 {
-                    Dispatcher.BeginInvoke(() =>
+                    //LoggedInReddit.LogIn(user, pass);
+                    if (authentication.loggedIn == true)
+                    {
+                        Dispatcher.BeginInvoke(() =>
                         {
+                            //LogIn.Content = "Log Out";
                             LogIn.Opacity = 0;
                             LogIn.IsEnabled = false;
                         }
-                    );
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke(() => 
+                        );
+                    }
+                    else
+                    {
+                        Dispatcher.BeginInvoke(() =>
                         {
-                            LogIn.Content = "Log out";
+                            UserProfile.Opacity = 0;
+                            UserProfile.IsEnabled = true;
                         }
-                    );
+                        );
 
+                    }
+                }
+                catch(Exception exc)
+                {
+                    MessageBox.Show("Failed" + exc);
                 }
 
             });

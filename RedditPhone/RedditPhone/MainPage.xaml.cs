@@ -17,17 +17,14 @@ namespace RedditPhone
 
     public partial class MainPage : PhoneApplicationPage
     {
-
         public Reddit authenticatedReddit;
-        public bool loggedIn;
+        public bool loggedIn = false;
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             authenticatedReddit = new Reddit();
-            loggedIn = false;
-     
             //sAdControl.ErrorOccurred += new EventHandler<Microsoft.Advertising.AdErrorEventArgs>(sAdControl_ErrorOccurred);
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
@@ -75,9 +72,8 @@ namespace RedditPhone
                 try
                 {
                     authenticatedReddit.LogIn(user,pass);
-                    dostuff();
                     loggedIn = true;
-
+                    dostuff();
                 }
                 catch (Exception e)
                 {
@@ -122,7 +118,7 @@ namespace RedditPhone
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/SideMenu.xaml?", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/SideMenu2.xaml?", UriKind.Relative));
         }
 
         // Sample code for building a localized ApplicationBar

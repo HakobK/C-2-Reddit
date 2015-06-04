@@ -21,7 +21,6 @@ namespace RedditPhone
         public SideMenu2()
         {
             InitializeComponent();
-
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -64,29 +63,35 @@ namespace RedditPhone
 
         private async Task disableButtons()
         {
-
             await Task.Factory.StartNew(() =>
             {
-                //LoggedInReddit.LogIn(user, pass);
-                if (authentication.loggedIn != false)
+                try
                 {
-                    Dispatcher.BeginInvoke(() =>
+                    //LoggedInReddit.LogIn(user, pass);
+                    if (authentication.loggedIn == true)
                     {
-                        //LogIn.Content = "Log Out";
-                        LogIn.Opacity = 0;
-                        LogIn.IsEnabled = false;
+                        Dispatcher.BeginInvoke(() =>
+                        {
+                            //LogIn.Content = "Log Out";
+                            LogIn.Opacity = 0;
+                            LogIn.IsEnabled = false;
+                        }
+                        );
                     }
-                    );
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke(() =>
+                    else
                     {
-                        UserProfile.Opacity = 0;
-                        UserProfile.IsEnabled = false;
-                    }
-                    );
+                        Dispatcher.BeginInvoke(() =>
+                        {
+                            UserProfile.Opacity = 0;
+                            UserProfile.IsEnabled = true;
+                        }
+                        );
 
+                    }
+                }
+                catch(Exception exc)
+                {
+                    MessageBox.Show("Failed" + exc);
                 }
 
             });

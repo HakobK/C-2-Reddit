@@ -34,6 +34,7 @@ namespace RedditPhone
         public TextBlock[] tBlockCollection;
         public Image[] thumbnailCollection;
         public Comment[] postListComments;
+        public string subredditStatus;
 
         public SubredditContent()
         {
@@ -54,6 +55,7 @@ namespace RedditPhone
             if (NavigationContext.QueryString.ContainsKey("subreddits"))
             {
                 string subR = NavigationContext.QueryString["subreddits"];
+                subredditStatus = subR;
                 getContentWithSubr(subR);
             }
 
@@ -71,23 +73,23 @@ namespace RedditPhone
                     password = usernamePass;
                 }
                 await login(username, password);
+                subredditStatus = "frontpageloggedin";
                 getContentFrontPage();
 
             }
         }
 
-       private async void print(object sender, System.Windows.Input.GestureEventArgs e)
-       {
-           MessageBox.Show("u heeft geklikt");
-           Post test22 = new Post();
+        private async void print(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            MessageBox.Show("u heeft geklikt");
+            Post test22 = new Post();
 
-           await Task.Factory.StartNew(() =>
-           {
-               Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/PostContent.xaml?postID=" + test22.Url, UriKind.Relative)));
-           }
-               );
-       }
-
+            await Task.Factory.StartNew(() =>
+            {
+                Dispatcher.BeginInvoke(() => NavigationService.Navigate(new Uri("/PostContent.xaml?postID=" + test22.Url, UriKind.Relative)));
+            }
+                );
+        }
 
        public async void getContentWithSubr(string subR)
        {
@@ -96,9 +98,6 @@ namespace RedditPhone
            IEnumerable<Post> posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
-           tBlockCollection = new TextBlock[objectSize];
-           thumbnailCollection = new Image[objectSize];
-           gridCollection = new Grid[objectSize];
            fillPageWithPosts(posts);
           try
            {
@@ -114,18 +113,13 @@ namespace RedditPhone
        }
 
        public async Task login(string user, string pass)
-       {
-           
-           
+       {     
            await Task.Factory.StartNew(() =>
            {
-               //LoggedInReddit.LogIn(user, pass);
 
                try
                {
-               
                        LoggedInReddit.LogIn(username, password); 
-                   
                }
                catch (Exception e)
                {
@@ -151,9 +145,6 @@ namespace RedditPhone
            var posts = await Task.Factory.StartNew(() => { return sReddit.Posts.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
            rName.Text = sReddit.Title;
-           
-
-
            fillPageWithPosts(posts);
 
            try
@@ -169,8 +160,6 @@ namespace RedditPhone
            }
 
        }
-
-
 
        public async void getContentFrontPageNew()
        {

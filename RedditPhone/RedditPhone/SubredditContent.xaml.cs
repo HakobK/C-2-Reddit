@@ -45,6 +45,7 @@ namespace RedditPhone
             thumbnailCollection = new Image[objectSize];
 
             rName.FontSize = 27;
+            rName.TextWrapping = TextWrapping.Wrap;
             rName.Text = "Loading...";
             
         }
@@ -172,6 +173,7 @@ namespace RedditPhone
            objectIndex = 0;
            Reddit reddit = new Reddit();
            reddit = LoggedInReddit;
+           if(subredditStatus = )
            var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
            var posts = await Task.Factory.StartNew(() => { return sReddit.New.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });

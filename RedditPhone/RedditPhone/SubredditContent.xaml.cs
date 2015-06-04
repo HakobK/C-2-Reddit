@@ -117,8 +117,9 @@ namespace RedditPhone
                        // MessageBox.Show(post.Thumbnail.ToString());
                        thumb = post.Thumbnail.ToString();
                        var img = new Image();
-                       img.MaxHeight = 80;
-                       img.MaxWidth = 80;
+                       img.Height = 80;
+                       img.Width = 80;
+                       img.Margin = new Thickness(10, 0, 0, 0);
                        thumbnailCollection[objectIndex] = img;
                        
                        if (thumb != ifNotSet)
@@ -150,14 +151,13 @@ namespace RedditPhone
                            img.HorizontalAlignment = HorizontalAlignment.Left;
                            // img.Margin = new Thickness(0, 0, 0, 0);
                        }
-                       var txt = new TextBlock();
+                       TextBlock txt = new TextBlock();
                        tBlockCollection[objectIndex] = txt;
                        txt.Text = postTitle;
                        txt.FontSize = 14;
-                       txt.HorizontalAlignment = HorizontalAlignment.Center;
-                       txt.Margin = new Thickness(100, 0, 0, 0);
-                       txt.Height = 100;
-                       txt.Width = 279;
+                       
+                       txt.Margin = new Thickness(95, 0, 0, 0);
+                       txt.TextWrapping = TextWrapping.Wrap;
                        //  txt.Margin = new Thickness(60,0,0,0);
 
                        var panel1 = new Grid();
@@ -165,8 +165,8 @@ namespace RedditPhone
                        panel1.Tap += new EventHandler<GestureEventArgs>(print);
                        panel1.MaxHeight = 70;
                        panel1.Height = 80;
-                       panel1.Width = 400;
-                       panel1.MaxWidth = 400;
+                       panel1.Width = 465;
+                       panel1.MaxWidth = 465;
                        panel1.VerticalAlignment = VerticalAlignment.Top;
                        panel1.Margin = new Thickness(0, verticalMargin, 0, 0);
                        SolidColorBrush myBrush = new SolidColorBrush(Color.FromArgb(255, 35, 35, 35));

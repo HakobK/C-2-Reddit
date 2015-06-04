@@ -70,6 +70,7 @@ namespace RedditPhone
                     authenticatedReddit.LogIn(user,pass);
                     loggedIn = 1;
                     dostuff();
+                    NavigationService.Navigate(new Uri("/SubredditContent.xaml?subreddits=", UriKind.Relative));
                 }
                 catch (Exception e)
                 {
@@ -77,7 +78,7 @@ namespace RedditPhone
                     {
                         MessageBox.Show(e.ToString());
 
-                        //NavigationService.Navigate(new Uri("/MainPage.xaml?key=" + "false", UriKind.Relative));
+                        
                     });
                 }
             });

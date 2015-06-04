@@ -27,6 +27,7 @@ namespace RedditPhone
         protected async void OnNavigatedTo(NavigationEventArgs e)
         {
             await disableButtons();
+
         }
 
         /// <summary>
@@ -68,7 +69,7 @@ namespace RedditPhone
                await Task.Factory.StartNew(() =>
             {
                 //LoggedInReddit.LogIn(user, pass);
-                if (authentication.loggedIn != false)
+                if (authentication.loggedIn == 1)
                 {
                     Dispatcher.BeginInvoke(() =>
                         {

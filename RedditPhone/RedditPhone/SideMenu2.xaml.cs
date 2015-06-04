@@ -17,6 +17,7 @@ namespace RedditPhone
     public partial class SideMenu2 : PhoneApplicationPage
     {
         MainPage authentication = new MainPage();
+        public int logCheck;
 
         public SideMenu2()
         {
@@ -25,7 +26,16 @@ namespace RedditPhone
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
         {
+            logCheck = 0;
+
+            if (NavigationContext.QueryString.ContainsKey("isloggedin"))
+            {
+                string key = NavigationContext.QueryString["isloggedin"];
+                logCheck = Convert.ToInt32(key);
+            }
+
             await disableButtons();
+            
         }
 
         /// <summary>
@@ -68,13 +78,15 @@ namespace RedditPhone
                 try
                 {
                     //LoggedInReddit.LogIn(user, pass);
-                    if (authentication.loggedIn == true)
+                    if (logCheck == 1)
                     {
                         Dispatcher.BeginInvoke(() =>
                         {
                             //LogIn.Content = "Log Out";
                             LogIn.Opacity = 0;
                             LogIn.IsEnabled = false;
+                            UserProfile.Opacity = 100;
+                            UserProfile.IsEnabled = true;
                         }
                         );
                     }
@@ -82,8 +94,10 @@ namespace RedditPhone
                     {
                         Dispatcher.BeginInvoke(() =>
                         {
+                            LogIn.Opacity = 100;
+                            LogIn.IsEnabled = true;
                             UserProfile.Opacity = 0;
-                            UserProfile.IsEnabled = true;
+                            UserProfile.IsEnabled = false;
                         }
                         );
 

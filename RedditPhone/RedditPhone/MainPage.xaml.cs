@@ -18,7 +18,7 @@ namespace RedditPhone
     public partial class MainPage : PhoneApplicationPage
     {
         public Reddit authenticatedReddit;
-        public bool loggedIn = false;
+        public int loggedIn;
 
         // Constructor
         public MainPage()
@@ -30,10 +30,6 @@ namespace RedditPhone
             //BuildLocalizedApplicationBar();
         }
 
-        public async Task<Reddit> tst()
-        {
-           return authenticatedReddit;
-        }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -58,7 +54,7 @@ namespace RedditPhone
         {
             await Task.Factory.StartNew(() =>
                 {
-                    Dispatcher.BeginInvoke(()=> MessageBox.Show(authenticatedReddit.User.FullName.ToString()));
+                    Dispatcher.BeginInvoke(()=> MessageBox.Show(loggedIn.ToString() + " en  " + authenticatedReddit.User.FullName.ToString()));
                 });
         }
         public async Task login2(string user, string pass)
@@ -72,7 +68,7 @@ namespace RedditPhone
                 try
                 {
                     authenticatedReddit.LogIn(user,pass);
-                    loggedIn = true;
+                    loggedIn = 1;
                     dostuff();
                 }
                 catch (Exception e)
@@ -118,7 +114,15 @@ namespace RedditPhone
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/SideMenu2.xaml?", UriKind.Relative));
+            if (loggedIn == 1)
+            {
+                NavigationService.Navigate(new Uri("/SideMenu2.xaml?isloggedin=" + loggedIn, UriKind.Relative));
+            }
+            else
+            {
+                NavigationService.Navigate(new Uri("/SideMenu2.xaml?", UriKind.Relative));
+            }
+
         }
 
         // Sample code for building a localized ApplicationBar

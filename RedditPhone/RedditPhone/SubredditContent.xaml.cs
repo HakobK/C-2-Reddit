@@ -234,7 +234,7 @@ namespace RedditPhone
                        tBlockCollection[objectIndex] = txt;
                        txt.Text = postTitle;
                        txt.FontSize = 14;
-
+                       
                        txt.Margin = new Thickness(95, 0, 0, 0);
                        txt.TextWrapping = TextWrapping.Wrap;
                        //  txt.Margin = new Thickness(60,0,0,0);

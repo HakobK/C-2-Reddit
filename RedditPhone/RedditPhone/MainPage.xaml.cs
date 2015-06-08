@@ -70,7 +70,7 @@ namespace RedditPhone
                     authenticatedReddit.LogIn(user,pass);
                     loggedIn = 1;
                     dostuff();
-                    NavigationService.Navigate(new Uri("/SubredditContent.xaml?", UriKind.Relative));
+                    NavigationService.Navigate(new Uri("/SubredditContent.xaml?subreddits=", UriKind.Relative));
                 }
                 catch (Exception e)
                 {

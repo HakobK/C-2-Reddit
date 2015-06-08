@@ -14,23 +14,15 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Black" Grid.Row="1" Margin="10,0">
-        <Button x:Name="goSubreddit" Content="Go&#xA;" HorizontalAlignment="Left" Margin="0,224,0,0" Click="Button_Click" Height="71" VerticalAlignment="Top"/>
-        <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,165,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="470"/>
-        <TextBlock HorizontalAlignment="Left" Margin="10,138,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White">
+    <Grid x:Name="LayoutRoot" Background="Black" Grid.Row="1">
+        <Button x:Name="goSubreddit" Content="Go&#xA;" HorizontalAlignment="Left" Margin="0,216,0,0" Click="Button_Click" Height="71" VerticalAlignment="Top"/>
+        <TextBox x:Name="subredditTxt" HorizontalAlignment="Left" Height="72" Margin="0,157,0,0" TextWrapping="Wrap" Text="&#xA;" VerticalAlignment="Top" Width="470"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Foreground="White">
         	<Run Text="Go to "/>
         	<Run Text="Subreddit"/>
         	<Run Text=":"/>
         </TextBlock>
-        <Button x:Name="UserProfile"  Content="User Profile" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1" Margin="0,73,0,0"/>
-        <Button x:Name="LogIn" Content="Log In" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_2" Margin="0,73,0,0"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Height="52" Width="308" FontSize="40" Margin="0,10,0,0">
-        	<Run Text="le"/>
-        	<Run Text=" "/>
-        	<Run Text="User Control"/>
-        	<LineBreak/>
-        	<Run/>
-        </TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="18,324,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top"/>
+        <Button x:Name="UserProfile"  Content="User Profile" HorizontalAlignment="Left" Margin="0,58,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+        <Button x:Name="LogIn" Content="Log In" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_2"/>
     </Grid>
 </phone:PhoneApplicationPage>

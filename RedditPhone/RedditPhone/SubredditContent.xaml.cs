@@ -21,8 +21,6 @@ namespace RedditPhone
 {
     public partial class SubredditContent : PhoneApplicationPage
     {
-        MainPage authentication = new MainPage();
-
         public int verticalMargin = 25;
         public int objectSize = 25;
         public int objectIndex = 0;
@@ -37,7 +35,6 @@ namespace RedditPhone
         public Image[] thumbnailCollection;
         public Comment[] postListComments;
         public string subredditStatus;
-        public int isLoggedIn;
 
         public SubredditContent()
         {
@@ -65,12 +62,21 @@ namespace RedditPhone
 
             else
             {
-                if (NavigationContext.QueryString.ContainsKey("loggedin"))
+                if (NavigationContext.QueryString.ContainsKey("username"))
                 {
-                    subredditStatus = "frontpageloggedin";
-                    isLoggedIn = 1;
-                    await getContentFrontPage();
+                    string usernamePass = NavigationContext.QueryString["username"];
+                    username = usernamePass;
                 }
+
+                if (NavigationContext.QueryString.ContainsKey("password"))
+                {
+                    string usernamePass = NavigationContext.QueryString["password"];
+                    password = usernamePass;
+                }
+                await login(username, password);
+                subredditStatus = "frontpageloggedin";
+                getContentFrontPage();
+
             }
         }
 
@@ -129,11 +135,11 @@ namespace RedditPhone
 
        }
 
-       public async Task getContentFrontPage()
+       public async void getContentFrontPage()
        {
 
            Reddit reddit = new Reddit();
-           reddit = authentication.authenticatedReddit;
+           reddit = LoggedInReddit;
           // await Task.Factory.StartNew(() => { login(user, pass); }); 
            
            var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
@@ -151,6 +157,7 @@ namespace RedditPhone
            catch (ArgumentNullException)
            {
                
+
            }
 
        }
@@ -166,6 +173,7 @@ namespace RedditPhone
            objectIndex = 0;
            Reddit reddit = new Reddit();
            reddit = LoggedInReddit;
+           if(subredditStatus = )
            var sReddit = await Task.Factory.StartNew(() => { return reddit.FrontPage; });
            var posts = await Task.Factory.StartNew(() => { return sReddit.New.Take(11); });
            var text = await Task.Factory.StartNew(() => { return posts.Count().ToString(); });
@@ -276,7 +284,7 @@ namespace RedditPhone
 
        private void Button_Click(object sender, RoutedEventArgs e)
        {
-           NavigationService.Navigate(new Uri("/SideMenu2.xaml?isloggedin=" + isLoggedIn, UriKind.Relative));
+           NavigationService.Navigate(new Uri("/SideMenu2.xaml?", UriKind.Relative));
        }
 
        private void newTxt_Tap(object sender, GestureEventArgs e)
